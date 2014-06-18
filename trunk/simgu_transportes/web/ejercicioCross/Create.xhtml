@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateEjercicioCrossTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateEjercicioCrossLabel_numVecesMedida}" for="numVecesMedida" />
+                    <h:inputText id="numVecesMedida" value="#{ejercicioCrossController.selected.numVecesMedida}" title="#{bundle.CreateEjercicioCrossTitle_numVecesMedida}" required="true" requiredMessage="#{bundle.CreateEjercicioCrossRequiredMessage_numVecesMedida}"/>
+                    <h:outputLabel value="#{bundle.CreateEjercicioCrossLabel_idejercicioCross}" for="idejercicioCross" />
+                    <h:inputText id="idejercicioCross" value="#{ejercicioCrossController.selected.idejercicioCross}" title="#{bundle.CreateEjercicioCrossTitle_idejercicioCross}" required="true" requiredMessage="#{bundle.CreateEjercicioCrossRequiredMessage_idejercicioCross}"/>
+                    <h:outputLabel value="#{bundle.CreateEjercicioCrossLabel_ejercicio}" for="ejercicio" />
+                    <h:selectOneMenu id="ejercicio" value="#{ejercicioCrossController.selected.ejercicio}" title="#{bundle.CreateEjercicioCrossTitle_ejercicio}" required="true" requiredMessage="#{bundle.CreateEjercicioCrossRequiredMessage_ejercicio}">
+                        <f:selectItems value="#{ejercicioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateEjercicioCrossLabel_idmedidaEjercicioCross}" for="idmedidaEjercicioCross" />
+                    <h:selectOneMenu id="idmedidaEjercicioCross" value="#{ejercicioCrossController.selected.idmedidaEjercicioCross}" title="#{bundle.CreateEjercicioCrossTitle_idmedidaEjercicioCross}" >
+                        <f:selectItems value="#{medidaEjercicioCrossController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ejercicioCrossController.create}" value="#{bundle.CreateEjercicioCrossSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{ejercicioCrossController.prepareList}" value="#{bundle.CreateEjercicioCrossShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateEjercicioCrossIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

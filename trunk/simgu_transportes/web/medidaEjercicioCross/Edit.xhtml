@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditMedidaEjercicioCrossTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditMedidaEjercicioCrossLabel_idmedidaEjercicioCross}" for="idmedidaEjercicioCross" />
+                    <h:inputText id="idmedidaEjercicioCross" value="#{medidaEjercicioCrossController.selected.idmedidaEjercicioCross}" title="#{bundle.EditMedidaEjercicioCrossTitle_idmedidaEjercicioCross}" required="true" requiredMessage="#{bundle.EditMedidaEjercicioCrossRequiredMessage_idmedidaEjercicioCross}"/>
+                    <h:outputLabel value="#{bundle.EditMedidaEjercicioCrossLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{medidaEjercicioCrossController.selected.nombre}" title="#{bundle.EditMedidaEjercicioCrossTitle_nombre}" required="true" requiredMessage="#{bundle.EditMedidaEjercicioCrossRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.EditMedidaEjercicioCrossLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{medidaEjercicioCrossController.selected.descripcion}" title="#{bundle.EditMedidaEjercicioCrossTitle_descripcion}" required="true" requiredMessage="#{bundle.EditMedidaEjercicioCrossRequiredMessage_descripcion}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{medidaEjercicioCrossController.update}" value="#{bundle.EditMedidaEjercicioCrossSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditMedidaEjercicioCrossViewLink}"/>
+                <br />
+                <h:commandLink action="#{medidaEjercicioCrossController.prepareList}" value="#{bundle.EditMedidaEjercicioCrossShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditMedidaEjercicioCrossIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

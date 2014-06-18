@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateUsuarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_idusuario}" for="idusuario" />
+                    <h:inputText id="idusuario" value="#{usuarioController.selected.idusuario}" title="#{bundle.CreateUsuarioTitle_idusuario}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_idusuario}"/>
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_identification}" for="identification" />
+                    <h:inputText id="identification" value="#{usuarioController.selected.identification}" title="#{bundle.CreateUsuarioTitle_identification}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_identification}"/>
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_fisrtname}" for="fisrtname" />
+                    <h:inputText id="fisrtname" value="#{usuarioController.selected.fisrtname}" title="#{bundle.CreateUsuarioTitle_fisrtname}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_fisrtname}"/>
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_login}" for="login" />
+                    <h:inputText id="login" value="#{usuarioController.selected.login}" title="#{bundle.CreateUsuarioTitle_login}" />
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_password}" for="password" />
+                    <h:inputText id="password" value="#{usuarioController.selected.password}" title="#{bundle.CreateUsuarioTitle_password}" />
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_secondname}" for="secondname" />
+                    <h:inputText id="secondname" value="#{usuarioController.selected.secondname}" title="#{bundle.CreateUsuarioTitle_secondname}" />
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_firstlastname}" for="firstlastname" />
+                    <h:inputText id="firstlastname" value="#{usuarioController.selected.firstlastname}" title="#{bundle.CreateUsuarioTitle_firstlastname}" />
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_secondlastname}" for="secondlastname" />
+                    <h:inputText id="secondlastname" value="#{usuarioController.selected.secondlastname}" title="#{bundle.CreateUsuarioTitle_secondlastname}" />
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_sex}" for="sex" />
+                    <h:inputText id="sex" value="#{usuarioController.selected.sex}" title="#{bundle.CreateUsuarioTitle_sex}" />
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_datebirth}" for="datebirth" />
+                    <h:inputText id="datebirth" value="#{usuarioController.selected.datebirth}" title="#{bundle.CreateUsuarioTitle_datebirth}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_citybirth}" for="citybirth" />
+                    <h:inputText id="citybirth" value="#{usuarioController.selected.citybirth}" title="#{bundle.CreateUsuarioTitle_citybirth}" />
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_departmentbirth}" for="departmentbirth" />
+                    <h:inputText id="departmentbirth" value="#{usuarioController.selected.departmentbirth}" title="#{bundle.CreateUsuarioTitle_departmentbirth}" />
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_typeidentification}" for="typeidentification" />
+                    <h:inputText id="typeidentification" value="#{usuarioController.selected.typeidentification}" title="#{bundle.CreateUsuarioTitle_typeidentification}" />
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_rh}" for="rh" />
+                    <h:inputText id="rh" value="#{usuarioController.selected.rh}" title="#{bundle.CreateUsuarioTitle_rh}" />
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_gs}" for="gs" />
+                    <h:inputText id="gs" value="#{usuarioController.selected.gs}" title="#{bundle.CreateUsuarioTitle_gs}" />
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_eps}" for="eps" />
+                    <h:inputText id="eps" value="#{usuarioController.selected.eps}" title="#{bundle.CreateUsuarioTitle_eps}" />
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_arp}" for="arp" />
+                    <h:inputText id="arp" value="#{usuarioController.selected.arp}" title="#{bundle.CreateUsuarioTitle_arp}" />
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_address}" for="address" />
+                    <h:inputText id="address" value="#{usuarioController.selected.address}" title="#{bundle.CreateUsuarioTitle_address}" />
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_telephon}" for="telephon" />
+                    <h:inputText id="telephon" value="#{usuarioController.selected.telephon}" title="#{bundle.CreateUsuarioTitle_telephon}" />
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_movil}" for="movil" />
+                    <h:inputText id="movil" value="#{usuarioController.selected.movil}" title="#{bundle.CreateUsuarioTitle_movil}" />
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{usuarioController.selected.email}" title="#{bundle.CreateUsuarioTitle_email}" />
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_dependencia}" for="dependencia" />
+                    <h:inputText id="dependencia" value="#{usuarioController.selected.dependencia}" title="#{bundle.CreateUsuarioTitle_dependencia}" />
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_cargo}" for="cargo" />
+                    <h:inputText id="cargo" value="#{usuarioController.selected.cargo}" title="#{bundle.CreateUsuarioTitle_cargo}" />
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_jefedependencia}" for="jefedependencia" />
+                    <h:inputText id="jefedependencia" value="#{usuarioController.selected.jefedependencia}" title="#{bundle.CreateUsuarioTitle_jefedependencia}" />
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_telefonodependencia}" for="telefonodependencia" />
+                    <h:inputText id="telefonodependencia" value="#{usuarioController.selected.telefonodependencia}" title="#{bundle.CreateUsuarioTitle_telefonodependencia}" />
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_extensiondependencia}" for="extensiondependencia" />
+                    <h:inputText id="extensiondependencia" value="#{usuarioController.selected.extensiondependencia}" title="#{bundle.CreateUsuarioTitle_extensiondependencia}" />
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_emaildependencia}" for="emaildependencia" />
+                    <h:inputText id="emaildependencia" value="#{usuarioController.selected.emaildependencia}" title="#{bundle.CreateUsuarioTitle_emaildependencia}" />
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_parentezco}" for="parentezco" />
+                    <h:inputText id="parentezco" value="#{usuarioController.selected.parentezco}" title="#{bundle.CreateUsuarioTitle_parentezco}" />
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_idfamiliar}" for="idfamiliar" />
+                    <h:inputText id="idfamiliar" value="#{usuarioController.selected.idfamiliar}" title="#{bundle.CreateUsuarioTitle_idfamiliar}" />
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_roleIdrole}" for="roleIdrole" />
+                    <h:selectOneMenu id="roleIdrole" value="#{usuarioController.selected.roleIdrole}" title="#{bundle.CreateUsuarioTitle_roleIdrole}" >
+                        <f:selectItems value="#{roleController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_medidasGenerales}" for="medidasGenerales" />
+                    <h:selectOneMenu id="medidasGenerales" value="#{usuarioController.selected.medidasGenerales}" title="#{bundle.CreateUsuarioTitle_medidasGenerales}" >
+                        <f:selectItems value="#{medidasGeneralesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{usuarioController.create}" value="#{bundle.CreateUsuarioSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{usuarioController.prepareList}" value="#{bundle.CreateUsuarioShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateUsuarioIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

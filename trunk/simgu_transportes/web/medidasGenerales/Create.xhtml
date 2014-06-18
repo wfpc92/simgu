@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateMedidasGeneralesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateMedidasGeneralesLabel_idUsuario}" for="idUsuario" />
+                    <h:inputText id="idUsuario" value="#{medidasGeneralesController.selected.idUsuario}" title="#{bundle.CreateMedidasGeneralesTitle_idUsuario}" required="true" requiredMessage="#{bundle.CreateMedidasGeneralesRequiredMessage_idUsuario}"/>
+                    <h:outputLabel value="#{bundle.CreateMedidasGeneralesLabel_deporte}" for="deporte" />
+                    <h:inputText id="deporte" value="#{medidasGeneralesController.selected.deporte}" title="#{bundle.CreateMedidasGeneralesTitle_deporte}" />
+                    <h:outputLabel value="#{bundle.CreateMedidasGeneralesLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{medidasGeneralesController.selected.estado}" title="#{bundle.CreateMedidasGeneralesTitle_estado}" />
+                    <h:outputLabel value="#{bundle.CreateMedidasGeneralesLabel_estatura}" for="estatura" />
+                    <h:inputText id="estatura" value="#{medidasGeneralesController.selected.estatura}" title="#{bundle.CreateMedidasGeneralesTitle_estatura}" />
+                    <h:outputLabel value="#{bundle.CreateMedidasGeneralesLabel_fechaIngreso}" for="fechaIngreso" />
+                    <h:inputText id="fechaIngreso" value="#{medidasGeneralesController.selected.fechaIngreso}" title="#{bundle.CreateMedidasGeneralesTitle_fechaIngreso}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateMedidasGeneralesLabel_actividad}" for="actividad" />
+                    <h:inputText id="actividad" value="#{medidasGeneralesController.selected.actividad}" title="#{bundle.CreateMedidasGeneralesTitle_actividad}" />
+                    <h:outputLabel value="#{bundle.CreateMedidasGeneralesLabel_sedentario}" for="sedentario" />
+                    <h:inputText id="sedentario" value="#{medidasGeneralesController.selected.sedentario}" title="#{bundle.CreateMedidasGeneralesTitle_sedentario}" />
+                    <h:outputLabel value="#{bundle.CreateMedidasGeneralesLabel_sexo}" for="sexo" />
+                    <h:inputText id="sexo" value="#{medidasGeneralesController.selected.sexo}" title="#{bundle.CreateMedidasGeneralesTitle_sexo}" />
+                    <h:outputLabel value="#{bundle.CreateMedidasGeneralesLabel_biepicondilarFemoral}" for="biepicondilarFemoral" />
+                    <h:inputText id="biepicondilarFemoral" value="#{medidasGeneralesController.selected.biepicondilarFemoral}" title="#{bundle.CreateMedidasGeneralesTitle_biepicondilarFemoral}" />
+                    <h:outputLabel value="#{bundle.CreateMedidasGeneralesLabel_biepicondilarHumeral}" for="biepicondilarHumeral" />
+                    <h:inputText id="biepicondilarHumeral" value="#{medidasGeneralesController.selected.biepicondilarHumeral}" title="#{bundle.CreateMedidasGeneralesTitle_biepicondilarHumeral}" />
+                    <h:outputLabel value="#{bundle.CreateMedidasGeneralesLabel_radioCubital}" for="radioCubital" />
+                    <h:inputText id="radioCubital" value="#{medidasGeneralesController.selected.radioCubital}" title="#{bundle.CreateMedidasGeneralesTitle_radioCubital}" />
+                    <h:outputLabel value="#{bundle.CreateMedidasGeneralesLabel_usuario}" for="usuario" />
+                    <h:selectOneMenu id="usuario" value="#{medidasGeneralesController.selected.usuario}" title="#{bundle.CreateMedidasGeneralesTitle_usuario}" required="true" requiredMessage="#{bundle.CreateMedidasGeneralesRequiredMessage_usuario}">
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{medidasGeneralesController.create}" value="#{bundle.CreateMedidasGeneralesSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{medidasGeneralesController.prepareList}" value="#{bundle.CreateMedidasGeneralesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateMedidasGeneralesIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

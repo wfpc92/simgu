@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditRutinaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditRutinaLabel_idRutina}" for="idRutina" />
+                    <h:inputText id="idRutina" value="#{rutinaController.selected.idRutina}" title="#{bundle.EditRutinaTitle_idRutina}" required="true" requiredMessage="#{bundle.EditRutinaRequiredMessage_idRutina}"/>
+                    <h:outputLabel value="#{bundle.EditRutinaLabel_fechaInicio}" for="fechaInicio" />
+                    <h:inputText id="fechaInicio" value="#{rutinaController.selected.fechaInicio}" title="#{bundle.EditRutinaTitle_fechaInicio}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditRutinaLabel_fechaFin}" for="fechaFin" />
+                    <h:inputText id="fechaFin" value="#{rutinaController.selected.fechaFin}" title="#{bundle.EditRutinaTitle_fechaFin}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditRutinaLabel_codigoRutina}" for="codigoRutina" />
+                    <h:inputText id="codigoRutina" value="#{rutinaController.selected.codigoRutina}" title="#{bundle.EditRutinaTitle_codigoRutina}" />
+                    <h:outputLabel value="#{bundle.EditRutinaLabel_calentamiento}" for="calentamiento" />
+                    <h:inputText id="calentamiento" value="#{rutinaController.selected.calentamiento}" title="#{bundle.EditRutinaTitle_calentamiento}" />
+                    <h:outputLabel value="#{bundle.EditRutinaLabel_idusuario}" for="idusuario" />
+                    <h:selectOneMenu id="idusuario" value="#{rutinaController.selected.idusuario}" title="#{bundle.EditRutinaTitle_idusuario}" >
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{rutinaController.update}" value="#{bundle.EditRutinaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditRutinaViewLink}"/>
+                <br />
+                <h:commandLink action="#{rutinaController.prepareList}" value="#{bundle.EditRutinaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditRutinaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

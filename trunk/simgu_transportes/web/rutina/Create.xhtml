@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateRutinaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateRutinaLabel_idRutina}" for="idRutina" />
+                    <h:inputText id="idRutina" value="#{rutinaController.selected.idRutina}" title="#{bundle.CreateRutinaTitle_idRutina}" required="true" requiredMessage="#{bundle.CreateRutinaRequiredMessage_idRutina}"/>
+                    <h:outputLabel value="#{bundle.CreateRutinaLabel_fechaInicio}" for="fechaInicio" />
+                    <h:inputText id="fechaInicio" value="#{rutinaController.selected.fechaInicio}" title="#{bundle.CreateRutinaTitle_fechaInicio}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateRutinaLabel_fechaFin}" for="fechaFin" />
+                    <h:inputText id="fechaFin" value="#{rutinaController.selected.fechaFin}" title="#{bundle.CreateRutinaTitle_fechaFin}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateRutinaLabel_codigoRutina}" for="codigoRutina" />
+                    <h:inputText id="codigoRutina" value="#{rutinaController.selected.codigoRutina}" title="#{bundle.CreateRutinaTitle_codigoRutina}" />
+                    <h:outputLabel value="#{bundle.CreateRutinaLabel_calentamiento}" for="calentamiento" />
+                    <h:inputText id="calentamiento" value="#{rutinaController.selected.calentamiento}" title="#{bundle.CreateRutinaTitle_calentamiento}" />
+                    <h:outputLabel value="#{bundle.CreateRutinaLabel_idusuario}" for="idusuario" />
+                    <h:selectOneMenu id="idusuario" value="#{rutinaController.selected.idusuario}" title="#{bundle.CreateRutinaTitle_idusuario}" >
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{rutinaController.create}" value="#{bundle.CreateRutinaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{rutinaController.prepareList}" value="#{bundle.CreateRutinaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateRutinaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

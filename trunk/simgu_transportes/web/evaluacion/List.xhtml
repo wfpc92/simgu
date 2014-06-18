@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListEvaluacionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListEvaluacionEmpty}" rendered="#{evaluacionController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{evaluacionController.items.rowCount > 0}">
+                    <h:outputText value="#{evaluacionController.pagination.pageFirstItem + 1}..#{evaluacionController.pagination.pageLastItem + 1}/#{evaluacionController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{evaluacionController.previous}" value="#{bundle.Previous} #{evaluacionController.pagination.pageSize}" rendered="#{evaluacionController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{evaluacionController.next}" value="#{bundle.Next} #{evaluacionController.pagination.pageSize}" rendered="#{evaluacionController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{evaluacionController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_idEvaluacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idEvaluacion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_peso}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.peso}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_fechaIngreso}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaIngreso}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_fechaSigEvaluacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaSigEvaluacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_abdomenInferior}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.abdomenInferior}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_cadera}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cadera}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_bicepsRelajadoDer}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.bicepsRelajadoDer}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_bicepsRelajadoIzq}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.bicepsRelajadoIzq}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_sesionesSemana}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sesionesSemana}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_semanaPrograma}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.semanaPrograma}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_bicepsContraidoDer}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.bicepsContraidoDer}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_torax}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.torax}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_bicepsContraidoIzq}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.bicepsContraidoIzq}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_musloSuperiorDer}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.musloSuperiorDer}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_musloSuperiorIzq}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.musloSuperiorIzq}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_pantorrillaDer}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pantorrillaDer}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_pantorrillaIzq}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pantorrillaIzq}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_abdominal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.abdominal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_grasaImpedanciometria}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.grasaImpedanciometria}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_medialPierna}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.medialPierna}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_muslo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.muslo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_pectoral}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pectoral}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_subescapular}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.subescapular}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_suprailiaco}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.suprailiaco}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_triceps}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.triceps}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_frecuenciaReposo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.frecuenciaReposo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_idUsuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idUsuario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEvaluacionTitle_idTecnico}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTecnico}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{evaluacionController.prepareView}" value="#{bundle.ListEvaluacionViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{evaluacionController.prepareEdit}" value="#{bundle.ListEvaluacionEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{evaluacionController.destroy}" value="#{bundle.ListEvaluacionDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{evaluacionController.prepareCreate}" value="#{bundle.ListEvaluacionCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListEvaluacionIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

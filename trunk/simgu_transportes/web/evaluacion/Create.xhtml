@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateEvaluacionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_idEvaluacion}" for="idEvaluacion" />
+                    <h:inputText id="idEvaluacion" value="#{evaluacionController.selected.idEvaluacion}" title="#{bundle.CreateEvaluacionTitle_idEvaluacion}" required="true" requiredMessage="#{bundle.CreateEvaluacionRequiredMessage_idEvaluacion}"/>
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_peso}" for="peso" />
+                    <h:inputText id="peso" value="#{evaluacionController.selected.peso}" title="#{bundle.CreateEvaluacionTitle_peso}" />
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_fechaIngreso}" for="fechaIngreso" />
+                    <h:inputText id="fechaIngreso" value="#{evaluacionController.selected.fechaIngreso}" title="#{bundle.CreateEvaluacionTitle_fechaIngreso}" required="true" requiredMessage="#{bundle.CreateEvaluacionRequiredMessage_fechaIngreso}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_fechaSigEvaluacion}" for="fechaSigEvaluacion" />
+                    <h:inputText id="fechaSigEvaluacion" value="#{evaluacionController.selected.fechaSigEvaluacion}" title="#{bundle.CreateEvaluacionTitle_fechaSigEvaluacion}" required="true" requiredMessage="#{bundle.CreateEvaluacionRequiredMessage_fechaSigEvaluacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_abdomenInferior}" for="abdomenInferior" />
+                    <h:inputText id="abdomenInferior" value="#{evaluacionController.selected.abdomenInferior}" title="#{bundle.CreateEvaluacionTitle_abdomenInferior}" required="true" requiredMessage="#{bundle.CreateEvaluacionRequiredMessage_abdomenInferior}"/>
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_cadera}" for="cadera" />
+                    <h:inputText id="cadera" value="#{evaluacionController.selected.cadera}" title="#{bundle.CreateEvaluacionTitle_cadera}" required="true" requiredMessage="#{bundle.CreateEvaluacionRequiredMessage_cadera}"/>
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_bicepsRelajadoDer}" for="bicepsRelajadoDer" />
+                    <h:inputText id="bicepsRelajadoDer" value="#{evaluacionController.selected.bicepsRelajadoDer}" title="#{bundle.CreateEvaluacionTitle_bicepsRelajadoDer}" required="true" requiredMessage="#{bundle.CreateEvaluacionRequiredMessage_bicepsRelajadoDer}"/>
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_bicepsRelajadoIzq}" for="bicepsRelajadoIzq" />
+                    <h:inputText id="bicepsRelajadoIzq" value="#{evaluacionController.selected.bicepsRelajadoIzq}" title="#{bundle.CreateEvaluacionTitle_bicepsRelajadoIzq}" required="true" requiredMessage="#{bundle.CreateEvaluacionRequiredMessage_bicepsRelajadoIzq}"/>
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_sesionesSemana}" for="sesionesSemana" />
+                    <h:inputText id="sesionesSemana" value="#{evaluacionController.selected.sesionesSemana}" title="#{bundle.CreateEvaluacionTitle_sesionesSemana}" />
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_semanaPrograma}" for="semanaPrograma" />
+                    <h:inputText id="semanaPrograma" value="#{evaluacionController.selected.semanaPrograma}" title="#{bundle.CreateEvaluacionTitle_semanaPrograma}" />
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_bicepsContraidoDer}" for="bicepsContraidoDer" />
+                    <h:inputText id="bicepsContraidoDer" value="#{evaluacionController.selected.bicepsContraidoDer}" title="#{bundle.CreateEvaluacionTitle_bicepsContraidoDer}" required="true" requiredMessage="#{bundle.CreateEvaluacionRequiredMessage_bicepsContraidoDer}"/>
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_torax}" for="torax" />
+                    <h:inputText id="torax" value="#{evaluacionController.selected.torax}" title="#{bundle.CreateEvaluacionTitle_torax}" required="true" requiredMessage="#{bundle.CreateEvaluacionRequiredMessage_torax}"/>
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_bicepsContraidoIzq}" for="bicepsContraidoIzq" />
+                    <h:inputText id="bicepsContraidoIzq" value="#{evaluacionController.selected.bicepsContraidoIzq}" title="#{bundle.CreateEvaluacionTitle_bicepsContraidoIzq}" required="true" requiredMessage="#{bundle.CreateEvaluacionRequiredMessage_bicepsContraidoIzq}"/>
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_musloSuperiorDer}" for="musloSuperiorDer" />
+                    <h:inputText id="musloSuperiorDer" value="#{evaluacionController.selected.musloSuperiorDer}" title="#{bundle.CreateEvaluacionTitle_musloSuperiorDer}" required="true" requiredMessage="#{bundle.CreateEvaluacionRequiredMessage_musloSuperiorDer}"/>
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_musloSuperiorIzq}" for="musloSuperiorIzq" />
+                    <h:inputText id="musloSuperiorIzq" value="#{evaluacionController.selected.musloSuperiorIzq}" title="#{bundle.CreateEvaluacionTitle_musloSuperiorIzq}" required="true" requiredMessage="#{bundle.CreateEvaluacionRequiredMessage_musloSuperiorIzq}"/>
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_pantorrillaDer}" for="pantorrillaDer" />
+                    <h:inputText id="pantorrillaDer" value="#{evaluacionController.selected.pantorrillaDer}" title="#{bundle.CreateEvaluacionTitle_pantorrillaDer}" required="true" requiredMessage="#{bundle.CreateEvaluacionRequiredMessage_pantorrillaDer}"/>
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_pantorrillaIzq}" for="pantorrillaIzq" />
+                    <h:inputText id="pantorrillaIzq" value="#{evaluacionController.selected.pantorrillaIzq}" title="#{bundle.CreateEvaluacionTitle_pantorrillaIzq}" required="true" requiredMessage="#{bundle.CreateEvaluacionRequiredMessage_pantorrillaIzq}"/>
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_abdominal}" for="abdominal" />
+                    <h:inputText id="abdominal" value="#{evaluacionController.selected.abdominal}" title="#{bundle.CreateEvaluacionTitle_abdominal}" />
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_grasaImpedanciometria}" for="grasaImpedanciometria" />
+                    <h:inputText id="grasaImpedanciometria" value="#{evaluacionController.selected.grasaImpedanciometria}" title="#{bundle.CreateEvaluacionTitle_grasaImpedanciometria}" />
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_medialPierna}" for="medialPierna" />
+                    <h:inputText id="medialPierna" value="#{evaluacionController.selected.medialPierna}" title="#{bundle.CreateEvaluacionTitle_medialPierna}" />
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_muslo}" for="muslo" />
+                    <h:inputText id="muslo" value="#{evaluacionController.selected.muslo}" title="#{bundle.CreateEvaluacionTitle_muslo}" />
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_pectoral}" for="pectoral" />
+                    <h:inputText id="pectoral" value="#{evaluacionController.selected.pectoral}" title="#{bundle.CreateEvaluacionTitle_pectoral}" />
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_subescapular}" for="subescapular" />
+                    <h:inputText id="subescapular" value="#{evaluacionController.selected.subescapular}" title="#{bundle.CreateEvaluacionTitle_subescapular}" />
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_suprailiaco}" for="suprailiaco" />
+                    <h:inputText id="suprailiaco" value="#{evaluacionController.selected.suprailiaco}" title="#{bundle.CreateEvaluacionTitle_suprailiaco}" />
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_triceps}" for="triceps" />
+                    <h:inputText id="triceps" value="#{evaluacionController.selected.triceps}" title="#{bundle.CreateEvaluacionTitle_triceps}" />
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_frecuenciaReposo}" for="frecuenciaReposo" />
+                    <h:inputText id="frecuenciaReposo" value="#{evaluacionController.selected.frecuenciaReposo}" title="#{bundle.CreateEvaluacionTitle_frecuenciaReposo}" required="true" requiredMessage="#{bundle.CreateEvaluacionRequiredMessage_frecuenciaReposo}"/>
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_idUsuario}" for="idUsuario" />
+                    <h:selectOneMenu id="idUsuario" value="#{evaluacionController.selected.idUsuario}" title="#{bundle.CreateEvaluacionTitle_idUsuario}" >
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateEvaluacionLabel_idTecnico}" for="idTecnico" />
+                    <h:selectOneMenu id="idTecnico" value="#{evaluacionController.selected.idTecnico}" title="#{bundle.CreateEvaluacionTitle_idTecnico}" >
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{evaluacionController.create}" value="#{bundle.CreateEvaluacionSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{evaluacionController.prepareList}" value="#{bundle.CreateEvaluacionShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateEvaluacionIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

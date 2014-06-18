@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListMedidasGeneralesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListMedidasGeneralesEmpty}" rendered="#{medidasGeneralesController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{medidasGeneralesController.items.rowCount > 0}">
+                    <h:outputText value="#{medidasGeneralesController.pagination.pageFirstItem + 1}..#{medidasGeneralesController.pagination.pageLastItem + 1}/#{medidasGeneralesController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{medidasGeneralesController.previous}" value="#{bundle.Previous} #{medidasGeneralesController.pagination.pageSize}" rendered="#{medidasGeneralesController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{medidasGeneralesController.next}" value="#{bundle.Next} #{medidasGeneralesController.pagination.pageSize}" rendered="#{medidasGeneralesController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{medidasGeneralesController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMedidasGeneralesTitle_idUsuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idUsuario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMedidasGeneralesTitle_deporte}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deporte}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMedidasGeneralesTitle_estado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMedidasGeneralesTitle_estatura}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estatura}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMedidasGeneralesTitle_fechaIngreso}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaIngreso}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMedidasGeneralesTitle_actividad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.actividad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMedidasGeneralesTitle_sedentario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sedentario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMedidasGeneralesTitle_sexo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sexo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMedidasGeneralesTitle_biepicondilarFemoral}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.biepicondilarFemoral}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMedidasGeneralesTitle_biepicondilarHumeral}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.biepicondilarHumeral}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMedidasGeneralesTitle_radioCubital}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.radioCubital}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMedidasGeneralesTitle_usuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.usuario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{medidasGeneralesController.prepareView}" value="#{bundle.ListMedidasGeneralesViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{medidasGeneralesController.prepareEdit}" value="#{bundle.ListMedidasGeneralesEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{medidasGeneralesController.destroy}" value="#{bundle.ListMedidasGeneralesDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{medidasGeneralesController.prepareCreate}" value="#{bundle.ListMedidasGeneralesCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListMedidasGeneralesIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
