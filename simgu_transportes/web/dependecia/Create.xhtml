@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateDependeciaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateDependeciaLabel_iddependencia}" for="iddependencia" />
+                    <h:inputText id="iddependencia" value="#{dependeciaController.selected.iddependencia}" title="#{bundle.CreateDependeciaTitle_iddependencia}" required="true" requiredMessage="#{bundle.CreateDependeciaRequiredMessage_iddependencia}"/>
+                    <h:outputLabel value="#{bundle.CreateDependeciaLabel_nombredependecia}" for="nombredependecia" />
+                    <h:inputText id="nombredependecia" value="#{dependeciaController.selected.nombredependecia}" title="#{bundle.CreateDependeciaTitle_nombredependecia}" />
+                    <h:outputLabel value="#{bundle.CreateDependeciaLabel_idrecibo}" for="idrecibo" />
+                    <h:selectOneMenu id="idrecibo" value="#{dependeciaController.selected.idrecibo}" title="#{bundle.CreateDependeciaTitle_idrecibo}" required="true" requiredMessage="#{bundle.CreateDependeciaRequiredMessage_idrecibo}">
+                        <f:selectItems value="#{reciboController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{dependeciaController.create}" value="#{bundle.CreateDependeciaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{dependeciaController.prepareList}" value="#{bundle.CreateDependeciaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateDependeciaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

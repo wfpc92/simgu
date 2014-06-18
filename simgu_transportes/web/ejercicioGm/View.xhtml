@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewEjercicioGmTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewEjercicioGmLabel_numeroSeries}"/>
+                    <h:outputText value="#{ejercicioGmController.selected.numeroSeries}" title="#{bundle.ViewEjercicioGmTitle_numeroSeries}"/>
+                    <h:outputText value="#{bundle.ViewEjercicioGmLabel_repeticiones}"/>
+                    <h:outputText value="#{ejercicioGmController.selected.repeticiones}" title="#{bundle.ViewEjercicioGmTitle_repeticiones}"/>
+                    <h:outputText value="#{bundle.ViewEjercicioGmLabel_receso}"/>
+                    <h:outputText value="#{ejercicioGmController.selected.receso}" title="#{bundle.ViewEjercicioGmTitle_receso}"/>
+                    <h:outputText value="#{bundle.ViewEjercicioGmLabel_peso}"/>
+                    <h:outputText value="#{ejercicioGmController.selected.peso}" title="#{bundle.ViewEjercicioGmTitle_peso}"/>
+                    <h:outputText value="#{bundle.ViewEjercicioGmLabel_idejerciciogm}"/>
+                    <h:outputText value="#{ejercicioGmController.selected.idejerciciogm}" title="#{bundle.ViewEjercicioGmTitle_idejerciciogm}"/>
+                    <h:outputText value="#{bundle.ViewEjercicioGmLabel_ejercicio}"/>
+                    <h:outputText value="#{ejercicioGmController.selected.ejercicio}" title="#{bundle.ViewEjercicioGmTitle_ejercicio}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ejercicioGmController.destroyAndView}" value="#{bundle.ViewEjercicioGmDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewEjercicioGmEditLink}"/>
+                <br />
+                <h:commandLink action="#{ejercicioGmController.prepareCreate}" value="#{bundle.ViewEjercicioGmCreateLink}" />
+                <br />
+                <h:commandLink action="#{ejercicioGmController.prepareList}" value="#{bundle.ViewEjercicioGmShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewEjercicioGmIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

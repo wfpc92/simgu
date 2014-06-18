@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEjercicioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditEjercicioLabel_idEjercicio}" for="idEjercicio" />
+                    <h:inputText id="idEjercicio" value="#{ejercicioController.selected.idEjercicio}" title="#{bundle.EditEjercicioTitle_idEjercicio}" required="true" requiredMessage="#{bundle.EditEjercicioRequiredMessage_idEjercicio}"/>
+                    <h:outputLabel value="#{bundle.EditEjercicioLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{ejercicioController.selected.nombre}" title="#{bundle.EditEjercicioTitle_nombre}" required="true" requiredMessage="#{bundle.EditEjercicioRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.EditEjercicioLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{ejercicioController.selected.descripcion}" title="#{bundle.EditEjercicioTitle_descripcion}" required="true" requiredMessage="#{bundle.EditEjercicioRequiredMessage_descripcion}"/>
+                    <h:outputLabel value="#{bundle.EditEjercicioLabel_tipo}" for="tipo" />
+                    <h:inputText id="tipo" value="#{ejercicioController.selected.tipo}" title="#{bundle.EditEjercicioTitle_tipo}" required="true" requiredMessage="#{bundle.EditEjercicioRequiredMessage_tipo}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{ejercicioController.update}" value="#{bundle.EditEjercicioSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditEjercicioViewLink}"/>
+                <br />
+                <h:commandLink action="#{ejercicioController.prepareList}" value="#{bundle.EditEjercicioShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditEjercicioIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

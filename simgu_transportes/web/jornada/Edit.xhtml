@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditJornadaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditJornadaLabel_idjornada}" for="idjornada" />
+                    <h:inputText id="idjornada" value="#{jornadaController.selected.idjornada}" title="#{bundle.EditJornadaTitle_idjornada}" required="true" requiredMessage="#{bundle.EditJornadaRequiredMessage_idjornada}"/>
+                    <h:outputLabel value="#{bundle.EditJornadaLabel_nombrejornada}" for="nombrejornada" />
+                    <h:inputText id="nombrejornada" value="#{jornadaController.selected.nombrejornada}" title="#{bundle.EditJornadaTitle_nombrejornada}" />
+                    <h:outputLabel value="#{bundle.EditJornadaLabel_valorjornada}" for="valorjornada" />
+                    <h:inputText id="valorjornada" value="#{jornadaController.selected.valorjornada}" title="#{bundle.EditJornadaTitle_valorjornada}" />
+                    <h:outputLabel value="#{bundle.EditJornadaLabel_horasjornada}" for="horasjornada" />
+                    <h:inputText id="horasjornada" value="#{jornadaController.selected.horasjornada}" title="#{bundle.EditJornadaTitle_horasjornada}" />
+                </h:panelGrid>
+                <h:commandLink action="#{jornadaController.update}" value="#{bundle.EditJornadaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditJornadaViewLink}"/>
+                <br />
+                <h:commandLink action="#{jornadaController.prepareList}" value="#{bundle.EditJornadaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditJornadaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

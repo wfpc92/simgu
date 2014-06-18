@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewEjercicioCrossTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewEjercicioCrossLabel_numVecesMedida}"/>
+                    <h:outputText value="#{ejercicioCrossController.selected.numVecesMedida}" title="#{bundle.ViewEjercicioCrossTitle_numVecesMedida}"/>
+                    <h:outputText value="#{bundle.ViewEjercicioCrossLabel_idejercicioCross}"/>
+                    <h:outputText value="#{ejercicioCrossController.selected.idejercicioCross}" title="#{bundle.ViewEjercicioCrossTitle_idejercicioCross}"/>
+                    <h:outputText value="#{bundle.ViewEjercicioCrossLabel_ejercicio}"/>
+                    <h:outputText value="#{ejercicioCrossController.selected.ejercicio}" title="#{bundle.ViewEjercicioCrossTitle_ejercicio}"/>
+                    <h:outputText value="#{bundle.ViewEjercicioCrossLabel_idmedidaEjercicioCross}"/>
+                    <h:outputText value="#{ejercicioCrossController.selected.idmedidaEjercicioCross}" title="#{bundle.ViewEjercicioCrossTitle_idmedidaEjercicioCross}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ejercicioCrossController.destroyAndView}" value="#{bundle.ViewEjercicioCrossDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewEjercicioCrossEditLink}"/>
+                <br />
+                <h:commandLink action="#{ejercicioCrossController.prepareCreate}" value="#{bundle.ViewEjercicioCrossCreateLink}" />
+                <br />
+                <h:commandLink action="#{ejercicioCrossController.prepareList}" value="#{bundle.ViewEjercicioCrossShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewEjercicioCrossIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

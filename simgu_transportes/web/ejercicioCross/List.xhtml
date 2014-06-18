@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListEjercicioCrossTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListEjercicioCrossEmpty}" rendered="#{ejercicioCrossController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{ejercicioCrossController.items.rowCount > 0}">
+                    <h:outputText value="#{ejercicioCrossController.pagination.pageFirstItem + 1}..#{ejercicioCrossController.pagination.pageLastItem + 1}/#{ejercicioCrossController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{ejercicioCrossController.previous}" value="#{bundle.Previous} #{ejercicioCrossController.pagination.pageSize}" rendered="#{ejercicioCrossController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{ejercicioCrossController.next}" value="#{bundle.Next} #{ejercicioCrossController.pagination.pageSize}" rendered="#{ejercicioCrossController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{ejercicioCrossController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEjercicioCrossTitle_numVecesMedida}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numVecesMedida}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEjercicioCrossTitle_idejercicioCross}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idejercicioCross}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEjercicioCrossTitle_ejercicio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ejercicio}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEjercicioCrossTitle_idmedidaEjercicioCross}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idmedidaEjercicioCross}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{ejercicioCrossController.prepareView}" value="#{bundle.ListEjercicioCrossViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ejercicioCrossController.prepareEdit}" value="#{bundle.ListEjercicioCrossEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ejercicioCrossController.destroy}" value="#{bundle.ListEjercicioCrossDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{ejercicioCrossController.prepareCreate}" value="#{bundle.ListEjercicioCrossCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListEjercicioCrossIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

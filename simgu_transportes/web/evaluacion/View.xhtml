@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewEvaluacionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_idEvaluacion}"/>
+                    <h:outputText value="#{evaluacionController.selected.idEvaluacion}" title="#{bundle.ViewEvaluacionTitle_idEvaluacion}"/>
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_peso}"/>
+                    <h:outputText value="#{evaluacionController.selected.peso}" title="#{bundle.ViewEvaluacionTitle_peso}"/>
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_fechaIngreso}"/>
+                    <h:outputText value="#{evaluacionController.selected.fechaIngreso}" title="#{bundle.ViewEvaluacionTitle_fechaIngreso}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_fechaSigEvaluacion}"/>
+                    <h:outputText value="#{evaluacionController.selected.fechaSigEvaluacion}" title="#{bundle.ViewEvaluacionTitle_fechaSigEvaluacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_abdomenInferior}"/>
+                    <h:outputText value="#{evaluacionController.selected.abdomenInferior}" title="#{bundle.ViewEvaluacionTitle_abdomenInferior}"/>
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_cadera}"/>
+                    <h:outputText value="#{evaluacionController.selected.cadera}" title="#{bundle.ViewEvaluacionTitle_cadera}"/>
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_bicepsRelajadoDer}"/>
+                    <h:outputText value="#{evaluacionController.selected.bicepsRelajadoDer}" title="#{bundle.ViewEvaluacionTitle_bicepsRelajadoDer}"/>
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_bicepsRelajadoIzq}"/>
+                    <h:outputText value="#{evaluacionController.selected.bicepsRelajadoIzq}" title="#{bundle.ViewEvaluacionTitle_bicepsRelajadoIzq}"/>
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_sesionesSemana}"/>
+                    <h:outputText value="#{evaluacionController.selected.sesionesSemana}" title="#{bundle.ViewEvaluacionTitle_sesionesSemana}"/>
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_semanaPrograma}"/>
+                    <h:outputText value="#{evaluacionController.selected.semanaPrograma}" title="#{bundle.ViewEvaluacionTitle_semanaPrograma}"/>
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_bicepsContraidoDer}"/>
+                    <h:outputText value="#{evaluacionController.selected.bicepsContraidoDer}" title="#{bundle.ViewEvaluacionTitle_bicepsContraidoDer}"/>
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_torax}"/>
+                    <h:outputText value="#{evaluacionController.selected.torax}" title="#{bundle.ViewEvaluacionTitle_torax}"/>
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_bicepsContraidoIzq}"/>
+                    <h:outputText value="#{evaluacionController.selected.bicepsContraidoIzq}" title="#{bundle.ViewEvaluacionTitle_bicepsContraidoIzq}"/>
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_musloSuperiorDer}"/>
+                    <h:outputText value="#{evaluacionController.selected.musloSuperiorDer}" title="#{bundle.ViewEvaluacionTitle_musloSuperiorDer}"/>
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_musloSuperiorIzq}"/>
+                    <h:outputText value="#{evaluacionController.selected.musloSuperiorIzq}" title="#{bundle.ViewEvaluacionTitle_musloSuperiorIzq}"/>
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_pantorrillaDer}"/>
+                    <h:outputText value="#{evaluacionController.selected.pantorrillaDer}" title="#{bundle.ViewEvaluacionTitle_pantorrillaDer}"/>
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_pantorrillaIzq}"/>
+                    <h:outputText value="#{evaluacionController.selected.pantorrillaIzq}" title="#{bundle.ViewEvaluacionTitle_pantorrillaIzq}"/>
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_abdominal}"/>
+                    <h:outputText value="#{evaluacionController.selected.abdominal}" title="#{bundle.ViewEvaluacionTitle_abdominal}"/>
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_grasaImpedanciometria}"/>
+                    <h:outputText value="#{evaluacionController.selected.grasaImpedanciometria}" title="#{bundle.ViewEvaluacionTitle_grasaImpedanciometria}"/>
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_medialPierna}"/>
+                    <h:outputText value="#{evaluacionController.selected.medialPierna}" title="#{bundle.ViewEvaluacionTitle_medialPierna}"/>
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_muslo}"/>
+                    <h:outputText value="#{evaluacionController.selected.muslo}" title="#{bundle.ViewEvaluacionTitle_muslo}"/>
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_pectoral}"/>
+                    <h:outputText value="#{evaluacionController.selected.pectoral}" title="#{bundle.ViewEvaluacionTitle_pectoral}"/>
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_subescapular}"/>
+                    <h:outputText value="#{evaluacionController.selected.subescapular}" title="#{bundle.ViewEvaluacionTitle_subescapular}"/>
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_suprailiaco}"/>
+                    <h:outputText value="#{evaluacionController.selected.suprailiaco}" title="#{bundle.ViewEvaluacionTitle_suprailiaco}"/>
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_triceps}"/>
+                    <h:outputText value="#{evaluacionController.selected.triceps}" title="#{bundle.ViewEvaluacionTitle_triceps}"/>
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_frecuenciaReposo}"/>
+                    <h:outputText value="#{evaluacionController.selected.frecuenciaReposo}" title="#{bundle.ViewEvaluacionTitle_frecuenciaReposo}"/>
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_idUsuario}"/>
+                    <h:outputText value="#{evaluacionController.selected.idUsuario}" title="#{bundle.ViewEvaluacionTitle_idUsuario}"/>
+                    <h:outputText value="#{bundle.ViewEvaluacionLabel_idTecnico}"/>
+                    <h:outputText value="#{evaluacionController.selected.idTecnico}" title="#{bundle.ViewEvaluacionTitle_idTecnico}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{evaluacionController.destroyAndView}" value="#{bundle.ViewEvaluacionDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewEvaluacionEditLink}"/>
+                <br />
+                <h:commandLink action="#{evaluacionController.prepareCreate}" value="#{bundle.ViewEvaluacionCreateLink}" />
+                <br />
+                <h:commandLink action="#{evaluacionController.prepareList}" value="#{bundle.ViewEvaluacionShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewEvaluacionIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

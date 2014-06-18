@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListRutinaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListRutinaEmpty}" rendered="#{rutinaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{rutinaController.items.rowCount > 0}">
+                    <h:outputText value="#{rutinaController.pagination.pageFirstItem + 1}..#{rutinaController.pagination.pageLastItem + 1}/#{rutinaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{rutinaController.previous}" value="#{bundle.Previous} #{rutinaController.pagination.pageSize}" rendered="#{rutinaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{rutinaController.next}" value="#{bundle.Next} #{rutinaController.pagination.pageSize}" rendered="#{rutinaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{rutinaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRutinaTitle_idRutina}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idRutina}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRutinaTitle_fechaInicio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaInicio}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRutinaTitle_fechaFin}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaFin}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRutinaTitle_codigoRutina}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoRutina}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRutinaTitle_calentamiento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.calentamiento}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRutinaTitle_idusuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idusuario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{rutinaController.prepareView}" value="#{bundle.ListRutinaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{rutinaController.prepareEdit}" value="#{bundle.ListRutinaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{rutinaController.destroy}" value="#{bundle.ListRutinaDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{rutinaController.prepareCreate}" value="#{bundle.ListRutinaCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListRutinaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
