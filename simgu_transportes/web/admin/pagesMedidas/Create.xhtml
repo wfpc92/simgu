@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateMedidasGeneralesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+
+            <h:form>
+                <!--
+                #{medidasGeneralesController.selected.usuario=usuarioController.getUsuario(managedBean.id_usuario)}
+                #{medidasGeneralesController.selected.usuario.idusuario}
+                #{medidasGeneralesController.selected.idUsuario=managedBean.id_usuario}-->
+                <p:panel header="Registrar Medidas Generales.">
+                    <p:messages />  
+                    <h:panelGrid columns="2" style="border-color: transparent" columnClasses="label, value"> 
+                        <p:outputLabel value="#{bundle.CreateMedidasGeneralesLabel_deporte}" for="deporte" />
+                        <p:inputText required="true" requiredMessage="El Campo Deporte Es Requerido" id="deporte" value="#{medidasGeneralesController.selected.deporte}" title="#{bundle.CreateMedidasGeneralesTitle_deporte}" />
+                        <p:outputLabel value="#{bundle.CreateMedidasGeneralesLabel_estatura}" for="estatura" />
+                        <p:inputText required="true" requiredMessage="El Campo Estatura Es Requerido" id="estatura" value="#{medidasGeneralesController.selected.estatura}" title="#{bundle.CreateMedidasGeneralesTitle_estatura}" ></p:inputText>
+                        <p:outputLabel value="#{bundle.CreateMedidasGeneralesLabel_biepicondilarFemoral}" for="biepicondilarFemoral" />
+                        <p:inputText required="true" requiredMessage="El Campo Bi epicondilar Femoral Es Requerido" id="biepicondilarFemoral" value="#{medidasGeneralesController.selected.biepicondilarFemoral}" title="#{bundle.CreateMedidasGeneralesTitle_biepicondilarFemoral}" />
+                        <p:outputLabel value="#{bundle.CreateMedidasGeneralesLabel_biepicondilarHumeral}" for="biepicondilarHumeral" />
+                        <p:inputText required="true" requiredMessage="El Campo Bi epicondilar Humeral Es Requerido" id="biepicondilarHumeral" value="#{medidasGeneralesController.selected.biepicondilarHumeral}" title="#{bundle.CreateMedidasGeneralesTitle_biepicondilarHumeral}" />
+                        <p:outputLabel value="#{bundle.CreateMedidasGeneralesLabel_radioCubital}" for="radioCubital" />
+                        <p:inputText required="true" requiredMessage="El Campo Radio Cubital Es Requerido" id="radioCubital" value="#{medidasGeneralesController.selected.radioCubital}" title="#{bundle.CreateMedidasGeneralesTitle_radioCubital}" />
+
+
+                        <p:outputLabel value="#{bundle.CreateMedidasGeneralesLabel_sexo}" for="sexo" />
+                        <h:selectOneMenu id="sexo" value="#{medidasGeneralesController.selected.sexo}" required="true" label="sexos">
+                            <f:selectItem itemLabel="Masculino" itemValue="m" />
+                            <f:selectItem itemLabel="Femenino" itemValue="f" />
+                        </h:selectOneMenu>
+
+                        <p:outputLabel value="Actividad: " for="actividad" />
+                        <h:selectOneMenu id="actividad" value="#{medidasGeneralesController.selected.actividad}" required="true" label="actividad">
+                            <f:selectItem itemLabel="Alta" itemValue="alta"  />
+                            <f:selectItem itemLabel="Media" itemValue="media" />
+                            <f:selectItem itemLabel="Baja" itemValue="baja" />
+                        </h:selectOneMenu>
+
+                        <p:outputLabel value="#{bundle.CreateMedidasGeneralesLabel_estado}" for="estado" />
+                        <h:selectOneMenu id="estado" value="#{medidasGeneralesController.selected.estado}" required="true" label="estados">
+                            <f:selectItem itemLabel="Excesiva" itemValue="excesiva"/>
+                            <f:selectItem itemLabel="Alta" itemValue="alta" />
+                            <f:selectItem itemLabel="Moderada" itemValue="moderada" />
+                            <f:selectItem itemLabel="Ligera" itemValue="ligera" />
+                        </h:selectOneMenu>
+
+                        <p:outputLabel value="#{bundle.CreateMedidasGeneralesLabel_sedentario}" for="sedentario" />
+                        <h:selectOneMenu id="sedentario" value="#{medidasGeneralesController.selected.sedentario}" required="true" label="sedentarios">
+                            <f:selectItem itemLabel="Si" itemValue="si" />
+                            <f:selectItem itemLabel="No" itemValue="no" />
+                        </h:selectOneMenu>
+
+                        <p:outputLabel value="#{bundle.CreateMedidasGeneralesLabel_fechaIngreso}" for="popup"/>
+                        <p:calendar required="true" requiredMessage="El Campo Fecha Ingreso Es Requerido" id="popup" value="#{medidasGeneralesController.selected.fechaIngreso}" />
+
+
+                    </h:panelGrid>
+
+                </p:panel>
+                <!--panel modal para fecha.-->
+                <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+                    <p:panelGrid id="display" columns="2" columnClasses="label,value">
+                        <h:outputText value="Fecha de Ingreso: " />
+                        <h:outputText value="#{medidasGeneralesController.selected.fechaIngreso}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                    </p:panelGrid>
+                </p:dialog>
+
+
+                <br />
+
+                <div style="display: inline"> 
+                    <div style="float: left; width: 50%">
+                        <p:commandButton action="#{medidasGeneralesController.create()}" value="Agregar Medidas" ajax="false" />
+                    </div>
+                    <div style="float: right;width: 50%; ">
+                        &nbsp;&nbsp;&nbsp;&nbsp; <p:commandButton action="#{medidasGeneralesController.prepareList}" value="Regresar" ajax="false" />
+                    </div>
+                </div>
+
+
+
+
+
+
+            </h:form>
+            <!--panel modal para fecha.-->
+            <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+                <p:panelGrid id="display" columns="2" columnClasses="label,value">
+                    <h:outputText value="Fecha de Ingreso: " />
+                    <h:outputText value="#{medidasGeneralesController.selected.fechaIngreso}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:outputText>
+                </p:panelGrid>
+            </p:dialog>
+
+        </ui:define>
+    </ui:composition>
+
+</html>

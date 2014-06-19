@@ -6,7 +6,9 @@ import com.asae.controllers.util.PaginationHelper;
 import com.asae.sessionbeans.EvaluacionFacade;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.ResourceBundle;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -17,6 +19,12 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import org.primefaces.component.tabview.TabView;
+import org.primefaces.model.chart.Axis;
+import org.primefaces.model.chart.AxisType;
+import org.primefaces.model.chart.BarChartModel;
+import org.primefaces.model.chart.ChartSeries;
+import org.primefaces.model.chart.PieChartModel;
 
 @Named("evaluacionController")
 @SessionScoped
@@ -28,7 +36,15 @@ public class EvaluacionController implements Serializable {
     private com.asae.sessionbeans.EvaluacionFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
-
+    TabView tabViewMedidas;
+    
+    public TabView getTabViewMedidas() {
+        return tabViewMedidas;
+    }
+    public void setTabViewMedidas(TabView tabViewMedidas) {
+        this.tabViewMedidas = tabViewMedidas;
+    }
+    
     public EvaluacionController() {
     }
 
@@ -70,16 +86,22 @@ public class EvaluacionController implements Serializable {
     public String prepareView() {
         current = (Evaluacion) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "View";
+        return "ViewHistorial";
     }
 
     public String prepareCreate() {
         current = new Evaluacion();
         selectedItemIndex = -1;
-        return "Create";
+        return "resumenEvaluacion";
     }
 
     public String create() {
+        if (this.current.getFechaSigEvaluacion() == null) {
+            Date var = new Date();
+            var.setTime(var.getTime() + 30L * 24 * 60 * 60 * 1000);
+            this.current.setFechaSigEvaluacion(var);
+        }
+        this.current.setFechaSigEvaluacion(new Date());
         try {
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("EvaluacionCreated"));
@@ -173,7 +195,6 @@ public class EvaluacionController implements Serializable {
         recreateModel();
         return "List";
     }
-
     public String previous() {
         getPagination().previousPage();
         recreateModel();
@@ -191,6 +212,131 @@ public class EvaluacionController implements Serializable {
     public Evaluacion getEvaluacion(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
+    /*Cargar Resumen*/
+    public String resumen() {
+        current = new Evaluacion();
+        selectedItemIndex = -1;
+        //return "CreateEvaluacion";
+        return "resumenEvaluacion";
+    }
+    /**
+     * Creacion de graficos de barras
+     */
+    private BarChartModel barModel;
+    private PieChartModel pieModel1;
+
+    @PostConstruct
+    public void init() {
+        createBarModels();
+    }
+
+    public BarChartModel getBarModel() {
+        return barModel;
+    }
+
+    public PieChartModel getPieModel1() {
+        return pieModel1;
+    }
+
+    private BarChartModel initBarModel() {
+        BarChartModel model = new BarChartModel();
+
+        ChartSeries boys = new ChartSeries();
+        ChartSeries boys1 = new ChartSeries();
+        ChartSeries boys2 = new ChartSeries();
+        ChartSeries boys3 = new ChartSeries();
+        ChartSeries boys4 = new ChartSeries();
+        ChartSeries boys5 = new ChartSeries();
+
+        boys.setLabel("Peso Total");
+        boys1.setLabel("Masa Muscular Total");
+        boys2.setLabel("Porcentaje Grasa Total");
+        boys3.setLabel("Peso Ideal");
+        boys4.setLabel("Masa Muscular Ideal");
+        boys5.setLabel("Porcentaje de Grasa Ideal");
+
+        boys.set("2014", 87);
+        boys1.set("2014", 110);
+        boys2.set("2014", 50);
+        boys3.set("2014", 80);
+        boys4.set("2014", 90);
+        boys5.set("2014", 89);
+
+        model.addSeries(boys);
+        model.addSeries(boys1);
+        model.addSeries(boys2);
+        model.addSeries(boys3);
+        model.addSeries(boys4);
+        model.addSeries(boys5);
+        return model;
+    }
+
+    private void createBarModels() {
+        createBarModel();
+        createPieModel1();
+    }
+
+    private void createBarModel() {
+        barModel = initBarModel();
+        barModel.setTitle("Objetivos");
+        barModel.setLegendPosition("ne");
+
+        Axis xAxis = barModel.getAxis(AxisType.X);
+        xAxis.setLabel("fecha");
+
+        Axis yAxis = barModel.getAxis(AxisType.Y);
+        yAxis.setLabel("Objetivos");
+        yAxis.setMin(0);
+        yAxis.setMax(200);
+    }
+
+    private void createPieModel1() {
+        pieModel1 = new PieChartModel();
+
+        pieModel1.set("Brand 1", 540);
+        pieModel1.set("Brand 2", 325);
+        pieModel1.set("Brand 3", 702);
+        pieModel1.set("Brand 4", 421);
+
+        pieModel1.setTitle("Simple Pie");
+        pieModel1.setLegendPosition("w");
+    }
+
+    /*aquitermina la grafica de barras.*/
+    /*Actualizacion de datos desde las entidades*/
+    private void actualizar_datos() {
+        getSelected().calc_imc();
+
+        getSelected().calc_pesoTotal();
+        getSelected().calc_porcGrasaTot();
+        getSelected().calc_pesoResidual();
+        getSelected().calc_porcPesoResidual();
+        getSelected().calc_pesoOseo();
+        getSelected().calc_porcPesoOseo();
+
+        getSelected().calc_masaCorpMagra();
+        getSelected().calc_masaCorpMagraIdeal();
+        getSelected().calc_porcGrasaIdeal();
+        getSelected().calc_pesoIdeal();
+
+        getSelected().calc_pesoMusc();
+        getSelected().calc_pesoMuscIdeal();
+        getSelected().calc_porcPesoMusc();
+        getSelected().calc_porcPesoOseoIdeal();
+        getSelected().calc_porcPesoMuscIdeal();
+
+        getSelected().calc_relacionCinturaCadera();
+        getSelected().calc_sumPliegue();
+
+        getSelected().calc_caloriasDieta();
+        getSelected().calc_quemaCalorias();
+        getSelected().calc_quemaCaloriasSesion();
+        getSelected().calc_rangosFrecuencia();
+        getSelected().calc_pesoAnterior();
+        getSelected().calc_porcGrasaAnterior();
+        getSelected().calc_pesoMuscAnterior();
+    }
+    /*FIn Actualizacion*/
 
     @FacesConverter(forClass = Evaluacion.class)
     public static class EvaluacionControllerConverter implements Converter {
