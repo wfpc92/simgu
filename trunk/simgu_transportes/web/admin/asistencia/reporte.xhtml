@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:body>
+        <ui:composition template="/template.xhtml">
+
+            <ui:define name="title">
+                <h:form>
+                    <p:tabMenu activeIndex="#{param.i}">
+                        <p:menuitem value="Control de Asistencia" outcome="/admin/asistencia/index" icon="ui-icon-person">
+                            <f:param name="i" value="0" />
+                        </p:menuitem>
+                        <p:menuitem value="Registros de Asistencia" outcome="/admin/asistencia/registros" icon="ui-icon-disk">
+                            <f:param name="i" value="1" />
+                        </p:menuitem>
+                        <p:menuitem value="Reportes" outcome="/admin/asistencia/reporte" icon="ui-icon-document">
+                            <f:param name="i" value="2" />
+                        </p:menuitem>
+                    </p:tabMenu>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="left">
+            </ui:define>
+
+            <ui:define name="body">
+
+                <h:form style="margin-bottom: 50px;">
+                    <p:breadCrumb>
+                        <p:menuitem value="Categories" url="/index" />
+                        <p:menuitem value="Reportes" url="/asistencia/reporte" />
+                    </p:breadCrumb>
+                </h:form>
+
+                <h1 class="title" style="text-align: center;">Reportes de Asistencia</h1>
+                <p style="font-size: 20px;">A continuación se presentan las opciones de generación de reportes, se puede seleccionar el estamento y las fechas que conforman el rango de los registros de asistencia del sistema. <br/><br/> Si solo se selecciona el estamento, el sistema traera registros de asistencia desde el inicio de los tiempos; si adicionalmente se selecciona la fecha inicial, el sistema retornara los registros de asistencia a partir de esa fecha; si se envia solo la fecha final el sistema retornara los datos de asistencia hasta esa fecha y por ultimo si se envian ambas fechas, el sistema retornara los registros de asistencia entre las fechas ingresadas.</p>
+
+                <h:form id="form"> 
+                    <p:panel id="panel" header="Reportes" style="margin-bottom:10px;">
+
+                        <h:panelGrid columns="7" cellpadding="7" style="margin-bottom:10px" >
+                            <p:outputLabel for="estamentos" value="Estamento" />
+                            <p:selectOneMenu id="estamentos" value="#{asistenciaController.estamento}">
+                                <f:selectItem itemLabel="Todos" itemValue="todos" />
+                                <f:selectItem itemLabel="Docente" itemValue="docente" />
+                                <f:selectItem itemLabel="Estudiante " itemValue="estudiante" />
+                                <f:selectItem itemLabel="Funcionario" itemValue="funcionario" />
+                                <f:selectItem itemLabel="Familiar" itemValue="familiar" />
+                            </p:selectOneMenu>
+
+                            <p:outputLabel for="finic" value="Fecha Inicial:" />
+                            <p:calendar id="finic" maxdate="+0" value="#{asistenciaController.finic}" locale="es" pattern="dd-MM-yyyy" navigator="true" />
+
+                            <p:outputLabel for="ffin" value="Fecha Final:" />
+                            <p:calendar id="ffin" maxdate="+0" value="#{asistenciaController.ffin}" locale="es" pattern="dd-MM-yyyy" navigator="true" />
+
+                            <p:commandButton value="Generar Reporte" actionListener="#{asistenciaController.generarReporte()}" update=":form:growl,:form:reporte"/>
+
+                        </h:panelGrid>
+
+                    </p:panel>
+
+                    <p:growl id="growl" showDetail="true" sticky="true" />
+
+                    <p:dataTable id="reporte" var="asistencia" value="#{asistenciaController.reporte}" emptyMessage="La busqueda no obtuvo resultados"
+                                 paginator="true" currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords}"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 >
+                        <p:column headerText="Identificación">
+                            <h:outputText value="#{asistencia[2].identificacion}" />
+                        </p:column>
+
+                        <p:column headerText="Apellidos">
+                            <h:outputText value="#{asistencia[2].apellidos}" />
+                        </p:column>
+
+                        <p:column headerText="Nombres">
+                            <h:outputText value="#{asistencia[2].nombres}" />
+                        </p:column>
+
+                        <p:column headerText="Estamento">
+                            <h:outputText value="#{asistencia[2].tipoEstamento}" />
+                        </p:column>
+
+                        <p:column headerText="Frecuencia">
+                            <h:outputText value="#{asistencia[3]}" />
+                        </p:column>
+
+                        <f:facet name="footer">
+                            <h:commandLink>
+                                <p:graphicImage value="../resources/img/xl.png" style="width: 20px; height: 20px;"/>
+                                <p:dataExporter type="xls" target="reporte" fileName="myexcel" preProcessor="#{asistenciaController.preProcessXLS}" postProcessor="#{asistenciaController.postProcessXLS}" />
+                            </h:commandLink>
+                        </f:facet>
+
+                    </p:dataTable>
+                </h:form> 
+
+            </ui:define>
+
+            <ui:define name="bottom">
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+
