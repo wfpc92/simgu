@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditContenidosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditContenidosLabel_idcontenido}" for="idcontenido" />
+                    <h:inputText id="idcontenido" value="#{contenidosController.selected.idcontenido}" title="#{bundle.EditContenidosTitle_idcontenido}" required="true" requiredMessage="#{bundle.EditContenidosRequiredMessage_idcontenido}"/>
+                    <h:outputLabel value="#{bundle.EditContenidosLabel_titulocontenido}" for="titulocontenido" />
+                    <h:inputText id="titulocontenido" value="#{contenidosController.selected.titulocontenido}" title="#{bundle.EditContenidosTitle_titulocontenido}" required="true" requiredMessage="#{bundle.EditContenidosRequiredMessage_titulocontenido}"/>
+                    <h:outputLabel value="#{bundle.EditContenidosLabel_descripcioncontenido}" for="descripcioncontenido" />
+                    <h:inputText id="descripcioncontenido" value="#{contenidosController.selected.descripcioncontenido}" title="#{bundle.EditContenidosTitle_descripcioncontenido}" />
+                    <h:outputLabel value="#{bundle.EditContenidosLabel_textocontenido}" for="textocontenido" />
+                    <h:inputText id="textocontenido" value="#{contenidosController.selected.textocontenido}" title="#{bundle.EditContenidosTitle_textocontenido}" />
+                    <h:outputLabel value="#{bundle.EditContenidosLabel_tipocontenido}" for="tipocontenido" />
+                    <h:inputText id="tipocontenido" value="#{contenidosController.selected.tipocontenido}" title="#{bundle.EditContenidosTitle_tipocontenido}" />
+                    <h:outputLabel value="#{bundle.EditContenidosLabel_estadocontenido}" for="estadocontenido" />
+                    <h:inputText id="estadocontenido" value="#{contenidosController.selected.estadocontenido}" title="#{bundle.EditContenidosTitle_estadocontenido}" />
+                    <h:outputLabel value="#{bundle.EditContenidosLabel_fechapublicacion}" for="fechapublicacion" />
+                    <h:inputText id="fechapublicacion" value="#{contenidosController.selected.fechapublicacion}" title="#{bundle.EditContenidosTitle_fechapublicacion}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                </h:panelGrid>
+                <h:commandLink action="#{contenidosController.update}" value="#{bundle.EditContenidosSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditContenidosViewLink}"/>
+                <br />
+                <h:commandLink action="#{contenidosController.prepareList}" value="#{bundle.EditContenidosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditContenidosIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

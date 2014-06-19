@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditMedidasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditMedidasLabel_idMedidas}" for="idMedidas" />
+                    <h:inputText id="idMedidas" value="#{medidasController.selected.idMedidas}" title="#{bundle.EditMedidasTitle_idMedidas}" required="true" requiredMessage="#{bundle.EditMedidasRequiredMessage_idMedidas}"/>
+                    <h:outputLabel value="#{bundle.EditMedidasLabel_tricepsmedida}" for="tricepsmedida" />
+                    <h:inputText id="tricepsmedida" value="#{medidasController.selected.tricepsmedida}" title="#{bundle.EditMedidasTitle_tricepsmedida}" required="true" requiredMessage="#{bundle.EditMedidasRequiredMessage_tricepsmedida}"/>
+                    <h:outputLabel value="#{bundle.EditMedidasLabel_subescapularmedida}" for="subescapularmedida" />
+                    <h:inputText id="subescapularmedida" value="#{medidasController.selected.subescapularmedida}" title="#{bundle.EditMedidasTitle_subescapularmedida}" required="true" requiredMessage="#{bundle.EditMedidasRequiredMessage_subescapularmedida}"/>
+                    <h:outputLabel value="#{bundle.EditMedidasLabel_suprailiacomedida}" for="suprailiacomedida" />
+                    <h:inputText id="suprailiacomedida" value="#{medidasController.selected.suprailiacomedida}" title="#{bundle.EditMedidasTitle_suprailiacomedida}" required="true" requiredMessage="#{bundle.EditMedidasRequiredMessage_suprailiacomedida}"/>
+                    <h:outputLabel value="#{bundle.EditMedidasLabel_abdominalmedida}" for="abdominalmedida" />
+                    <h:inputText id="abdominalmedida" value="#{medidasController.selected.abdominalmedida}" title="#{bundle.EditMedidasTitle_abdominalmedida}" required="true" requiredMessage="#{bundle.EditMedidasRequiredMessage_abdominalmedida}"/>
+                    <h:outputLabel value="#{bundle.EditMedidasLabel_muslomedida}" for="muslomedida" />
+                    <h:inputText id="muslomedida" value="#{medidasController.selected.muslomedida}" title="#{bundle.EditMedidasTitle_muslomedida}" required="true" requiredMessage="#{bundle.EditMedidasRequiredMessage_muslomedida}"/>
+                    <h:outputLabel value="#{bundle.EditMedidasLabel_pantorrillamedida}" for="pantorrillamedida" />
+                    <h:inputText id="pantorrillamedida" value="#{medidasController.selected.pantorrillamedida}" title="#{bundle.EditMedidasTitle_pantorrillamedida}" required="true" requiredMessage="#{bundle.EditMedidasRequiredMessage_pantorrillamedida}"/>
+                    <h:outputLabel value="#{bundle.EditMedidasLabel_perimetromunecamedida}" for="perimetromunecamedida" />
+                    <h:inputText id="perimetromunecamedida" value="#{medidasController.selected.perimetromunecamedida}" title="#{bundle.EditMedidasTitle_perimetromunecamedida}" required="true" requiredMessage="#{bundle.EditMedidasRequiredMessage_perimetromunecamedida}"/>
+                    <h:outputLabel value="#{bundle.EditMedidasLabel_perimetrobrazomedida}" for="perimetrobrazomedida" />
+                    <h:inputText id="perimetrobrazomedida" value="#{medidasController.selected.perimetrobrazomedida}" title="#{bundle.EditMedidasTitle_perimetrobrazomedida}" required="true" requiredMessage="#{bundle.EditMedidasRequiredMessage_perimetrobrazomedida}"/>
+                    <h:outputLabel value="#{bundle.EditMedidasLabel_perimetroantebrazomedida}" for="perimetroantebrazomedida" />
+                    <h:inputText id="perimetroantebrazomedida" value="#{medidasController.selected.perimetroantebrazomedida}" title="#{bundle.EditMedidasTitle_perimetroantebrazomedida}" required="true" requiredMessage="#{bundle.EditMedidasRequiredMessage_perimetroantebrazomedida}"/>
+                    <h:outputLabel value="#{bundle.EditMedidasLabel_perimetropantorrillamedida}" for="perimetropantorrillamedida" />
+                    <h:inputText id="perimetropantorrillamedida" value="#{medidasController.selected.perimetropantorrillamedida}" title="#{bundle.EditMedidasTitle_perimetropantorrillamedida}" required="true" requiredMessage="#{bundle.EditMedidasRequiredMessage_perimetropantorrillamedida}"/>
+                    <h:outputLabel value="#{bundle.EditMedidasLabel_perimetrocajatoraxicamedida}" for="perimetrocajatoraxicamedida" />
+                    <h:inputText id="perimetrocajatoraxicamedida" value="#{medidasController.selected.perimetrocajatoraxicamedida}" title="#{bundle.EditMedidasTitle_perimetrocajatoraxicamedida}" required="true" requiredMessage="#{bundle.EditMedidasRequiredMessage_perimetrocajatoraxicamedida}"/>
+                    <h:outputLabel value="#{bundle.EditMedidasLabel_perimetromuslomedida}" for="perimetromuslomedida" />
+                    <h:inputText id="perimetromuslomedida" value="#{medidasController.selected.perimetromuslomedida}" title="#{bundle.EditMedidasTitle_perimetromuslomedida}" required="true" requiredMessage="#{bundle.EditMedidasRequiredMessage_perimetromuslomedida}"/>
+                    <h:outputLabel value="#{bundle.EditMedidasLabel_fechamedidas}" for="fechamedidas" />
+                    <h:inputText id="fechamedidas" value="#{medidasController.selected.fechamedidas}" title="#{bundle.EditMedidasTitle_fechamedidas}" required="true" requiredMessage="#{bundle.EditMedidasRequiredMessage_fechamedidas}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditMedidasLabel_peso}" for="peso" />
+                    <h:inputText id="peso" value="#{medidasController.selected.peso}" title="#{bundle.EditMedidasTitle_peso}" required="true" requiredMessage="#{bundle.EditMedidasRequiredMessage_peso}"/>
+                    <h:outputLabel value="#{bundle.EditMedidasLabel_altura}" for="altura" />
+                    <h:inputText id="altura" value="#{medidasController.selected.altura}" title="#{bundle.EditMedidasTitle_altura}" />
+                    <h:outputLabel value="#{bundle.EditMedidasLabel_idusuario}" for="idusuario" />
+                    <h:selectOneMenu id="idusuario" value="#{medidasController.selected.idusuario}" title="#{bundle.EditMedidasTitle_idusuario}" >
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{medidasController.update}" value="#{bundle.EditMedidasSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditMedidasViewLink}"/>
+                <br />
+                <h:commandLink action="#{medidasController.prepareList}" value="#{bundle.EditMedidasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditMedidasIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

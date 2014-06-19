@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListResultadosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListResultadosEmpty}" rendered="#{resultadosController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{resultadosController.items.rowCount > 0}">
+                    <h:outputText value="#{resultadosController.pagination.pageFirstItem + 1}..#{resultadosController.pagination.pageLastItem + 1}/#{resultadosController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{resultadosController.previous}" value="#{bundle.Previous} #{resultadosController.pagination.pageSize}" rendered="#{resultadosController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{resultadosController.next}" value="#{bundle.Next} #{resultadosController.pagination.pageSize}" rendered="#{resultadosController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{resultadosController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListResultadosTitle_idresultados}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idresultados}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListResultadosTitle_sumatoriapliegues}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sumatoriapliegues}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListResultadosTitle_porcentajegrasa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.porcentajegrasa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListResultadosTitle_pesograso}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pesograso}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListResultadosTitle_pesolibregrasa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pesolibregrasa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListResultadosTitle_masamuscular}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.masamuscular}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListResultadosTitle_pesoideal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pesoideal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListResultadosTitle_indmasamuscular}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.indmasamuscular}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListResultadosTitle_complexion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.complexion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListResultadosTitle_tasametabbasal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tasametabbasal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListResultadosTitle_excesopeso}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.excesopeso}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListResultadosTitle_pesooptimo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pesooptimo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListResultadosTitle_fecharesultados}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fecharesultados}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListResultadosTitle_resgrasa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.resgrasa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListResultadosTitle_rescomplexion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rescomplexion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListResultadosTitle_resimc}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.resimc}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListResultadosTitle_idusuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idusuario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{resultadosController.prepareView}" value="#{bundle.ListResultadosViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{resultadosController.prepareEdit}" value="#{bundle.ListResultadosEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{resultadosController.destroy}" value="#{bundle.ListResultadosDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{resultadosController.prepareCreate}" value="#{bundle.ListResultadosCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListResultadosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

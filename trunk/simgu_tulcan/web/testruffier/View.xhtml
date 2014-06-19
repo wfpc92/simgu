@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTestruffierTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTestruffierLabel_idtestruffier}"/>
+                    <h:outputText value="#{testruffierController.selected.idtestruffier}" title="#{bundle.ViewTestruffierTitle_idtestruffier}"/>
+                    <h:outputText value="#{bundle.ViewTestruffierLabel_pulso0ruffier}"/>
+                    <h:outputText value="#{testruffierController.selected.pulso0ruffier}" title="#{bundle.ViewTestruffierTitle_pulso0ruffier}"/>
+                    <h:outputText value="#{bundle.ViewTestruffierLabel_pulso1ruffier}"/>
+                    <h:outputText value="#{testruffierController.selected.pulso1ruffier}" title="#{bundle.ViewTestruffierTitle_pulso1ruffier}"/>
+                    <h:outputText value="#{bundle.ViewTestruffierLabel_pulso2ruffier}"/>
+                    <h:outputText value="#{testruffierController.selected.pulso2ruffier}" title="#{bundle.ViewTestruffierTitle_pulso2ruffier}"/>
+                    <h:outputText value="#{bundle.ViewTestruffierLabel_resultadoruffier}"/>
+                    <h:outputText value="#{testruffierController.selected.resultadoruffier}" title="#{bundle.ViewTestruffierTitle_resultadoruffier}"/>
+                    <h:outputText value="#{bundle.ViewTestruffierLabel_fecharuffier}"/>
+                    <h:outputText value="#{testruffierController.selected.fecharuffier}" title="#{bundle.ViewTestruffierTitle_fecharuffier}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewTestruffierLabel_calificacion}"/>
+                    <h:outputText value="#{testruffierController.selected.calificacion}" title="#{bundle.ViewTestruffierTitle_calificacion}"/>
+                    <h:outputText value="#{bundle.ViewTestruffierLabel_idusuario}"/>
+                    <h:outputText value="#{testruffierController.selected.idusuario}" title="#{bundle.ViewTestruffierTitle_idusuario}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{testruffierController.destroyAndView}" value="#{bundle.ViewTestruffierDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTestruffierEditLink}"/>
+                <br />
+                <h:commandLink action="#{testruffierController.prepareCreate}" value="#{bundle.ViewTestruffierCreateLink}" />
+                <br />
+                <h:commandLink action="#{testruffierController.prepareList}" value="#{bundle.ViewTestruffierShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTestruffierIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
