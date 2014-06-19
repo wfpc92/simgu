@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Estadisticas</title>
+        <h:outputStylesheet library="css" name="Estilostablas.css"/>
+    </h:head>
+    <body>
+
+        <ui:composition template="./TemplateAdmin.xhtml">
+
+            <ui:define name="content">
+                <p class="breadcrumb">Usted está en: <a href="indexAdmin.xhtml">Inicio </a>| Estadisticas</p>
+                <br />
+                 <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:form>
+                    <h:panelGrid columns="3" columnClasses="alinder,alinizq,alinder" >
+                        <h:outputLabel value="Seleccione la consulta:" for="consulta"/>
+                        <h:selectOneMenu id="consulta" label="consulta" value="#{mBRecaudos.consulta}" >
+                            <f:selectItem itemLabel="Total recaudado" itemValue="TOTALRECAUDO"/>
+                            <f:selectItem itemLabel="Total de ingresos por personas que pagan jornada" itemValue="TOTALJORNADA"/>
+                            <f:selectItem itemLabel="Total de ingresos por personas que pagan mensual" itemValue="TOTALMENSUAL"/>
+                        </h:selectOneMenu>
+                        <h:message for="consulta"/>
+                        <h:outputLabel value="* Fecha inicio (dd-mm-yyyy):" for="finicio"/>
+                        <h:inputText id="finicio" label="finicio"
+                                     required="true"
+                                     value="#{mBRecaudos.fechainicio}" />
+                        <h:message for="finicio" />
+                        <h:outputLabel value="* Fecha fin (dd-mm-yyyy): " for="ffin"/>
+                        <h:inputText id="ffin" label="ffin"
+                                     required="true"
+                                     value="#{mBRecaudos.fechafin}" />
+                        <h:message for="ffin" />
+                        <h:panelGroup/>
+                        <h:commandButton id="consultar" value="Consultar"
+                                         action="resultEstadisticas" />
+                    </h:panelGrid>
+                </h:form> 
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <!--<h:outputStylesheet name="./css/default.css"/>-->
+        <h:outputStylesheet name="./css/estilos.css"/>
+        <h:outputStylesheet name="./css/normalize.css"/>
+        <title>SIMGU</title>
+    </h:head>
+
+    <h:body>
+
+        <header id="mainHeader">
+            <div class="contenedor">
+                <div class="top">
+                    <div class="logo">
+                        <a href="#"></a>
+                    </div>
+                    <div class="borde-redondo"></div>
+                    <div class="titulo">simgu</div>
+                    <div class="clear"></div>
+                </div>
+                <div class="bottom">
+
+                </div>
+                <nav id="mainNav">
+                    <ul>
+                        <li><span class="punta"></span><a href="indexUsuario.xhtml">Inicio</a></li>
+                        <li><span class="punta"></span><a href="#">Item 1</a></li>
+                        <li><span class="punta"></span><a href="#">Recaudos</a></li>
+                        <li><span class="punta"></span><a href="#">Item 3</a></li>
+                        <li><span class="punta"></span><a href="#">Item 4</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <section id="contenido">
+            <div class="contenedor">
+                <ul id="mainMenu">
+                    <li class="first"><a href="editarRecibo.xhtml">Consultar recibos</a></li>
+                    <li class="first"><a href="estadisticas.xhtml">Estadisticas recaudos</a></li>
+                    <li class="first"><a href="estadisticasPersonas.xhtml">Estadisticas personas</a></li>
+                    <li class="first"><a href="agregarJornada.xhtml">Agregar jornada</a></li>
+                    <li class="first"><a href="consultarJornadas.xhtml">Consultar jornadas</a></li>
+                </ul>
+                <!--<p class="breadcrumb">Usted está en: <a href="indexAdmin.xhtml">Inicio</a></p>-->
+                <div id="content" class="center_content">
+                    <ui:insert name="content"></ui:insert>
+                </div>
+                <div class="clear"></div>
+                
+            </div>
+        </section>
+
+        <footer id="mainFooter">
+            <div class="contenedor">
+                <div class="separador"></div>
+                <div class="pie">
+                    <div class="decoracion izq"></div>
+                    <div class="decoracion der"></div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </footer>
+
+    </h:body>
+
+</html>

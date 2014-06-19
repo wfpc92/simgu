@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Ingresar recibo</title>
+        <h:outputStylesheet library="css" name="Estilostablas.css"/>
+    </h:head>
+    <body>
+        <ui:composition template="./TemplateAdmin.xhtml">
+
+            <ui:define name="content">
+                <p class="breadcrumb">Usted está en: <a href="indexAdmin.xhtml">Inicio </a>| Ingresar recibo</p>
+                <h:outputText value="#{bundle.CreateReciboTitle}"></h:outputText>
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:form>
+                    <h:panelGrid columns="3">
+                        <h:outputLabel value="#{bundle.CreateReciboLabel_idrecibo}" for="idrecibo" />
+                        <h:inputText id="idrecibo" value="#{reciboController.selected.idrecibo}" title="#{bundle.CreateReciboTitle_idrecibo}" required="true" requiredMessage="#{bundle.CreateReciboRequiredMessage_idrecibo}"/>
+                        <h:message for="idrecibo"></h:message>
+                        <h:outputLabel value="#{bundle.CreateReciboLabel_usuario}" for="usuario" />
+                        <h:selectOneMenu id="usuario" value="#{reciboController.selected.usuario}" title="#{bundle.CreateReciboTitle_usuario}" required="true" requiredMessage="#{bundle.CreateReciboRequiredMessage_usuario}">
+                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:message for="idrecibo"></h:message>
+                        <h:outputLabel value="#{bundle.CreateReciboLabel_dependecia}" for="dependecia" />
+                        <h:selectOneMenu id="dependecia" value="#{reciboController.selected.dependecia}" title="#{bundle.CreateReciboTitle_dependecia}" required="true" requiredMessage="#{bundle.CreateReciboRequiredMessage_dependecia}">
+                            <f:selectItems value="#{dependeciaController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:message for="idrecibo"></h:message>
+                        <h:outputLabel value="* Modo de pago :" for="pago" />
+                        <h:selectOneMenu id="pago" label="pago" value="#" >
+                            <f:selectItem itemLabel="Mensual" itemValue="mensual"/>
+                            <f:selectItem itemLabel="Jornada" itemValue="jornada"/>
+                        </h:selectOneMenu>
+                        <h:message for="idrecibo"></h:message>
+                        <h:outputLabel value="#{bundle.CreateJornadaLabel_idjornada}" for="idjornada" />
+                        <h:selectOneMenu id="idjornada" value="#{reciboController.selected.idjornada}" title="#{bundle.CreateReciboTitle_idjornada}">
+                            <f:selectItems value="#{jornadaController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:message for="idrecibo"></h:message>
+                        <h:outputLabel value="#{bundle.CreateReciboLabel_valorrecibo}" for="valorrecibo" />
+                        <h:inputText id="valorrecibo" value="#{reciboController.selected.valorrecibo}" title="#{bundle.CreateReciboTitle_valorrecibo}" />
+                        <h:message for="idrecibo"></h:message>
+                        <h:outputLabel value="#{bundle.CreateReciboLabel_fechaingreso}" for="fechaingreso" />
+                        <h:inputText id="fechaingreso" value="#{reciboController.selected.fechaingreso}" title="#{bundle.CreateReciboTitle_fechaingreso}" >
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:inputText>
+                        <h:message for="idrecibo"></h:message>
+                        <h:outputLabel value="#{bundle.CreateReciboLabel_estadorecibo}" for="estadorecibo" />
+                        <h:selectOneMenu id="idestado" value="#{reciboController.selected.estadorecibo}">
+                            <f:selectItem itemLabel="Activo"  itemValue="Activo"/>
+                            <f:selectItem itemLabel="inactivo" itemValue="Inactivo"/>
+                        </h:selectOneMenu>
+                        <h:message for="idrecibo"></h:message>
+                        <h:outputLabel value="* Tipo de usuario:" for="tusuario"/>
+                        <h:selectOneMenu id="tusuario" label="tusuario" value="#" >
+                            <f:selectItem itemLabel="Administrativo" itemValue="admin"/>
+                            <f:selectItem itemLabel="Docente" itemValue="docente"/>
+                            <f:selectItem itemLabel="Monitor" itemValue="monitor"/>
+                            <f:selectItem itemLabel="Estudiante" itemValue="estudiante"/>
+                            <f:selectItem itemLabel="Familiar" itemValue="familiar"/>
+                        </h:selectOneMenu>
+                        <h:message for="idrecibo"></h:message>
+                        <h:outputLabel value="* Parentesco:" for="parentesco"/>
+                        <h:selectOneMenu id="parentesco" label="parentesco" value="#" >
+                            <f:selectItem itemLabel="Esposo(a)" itemValue="esposo"/>
+                            <f:selectItem itemLabel="Hijo(a)" itemValue="hijo"/>
+                            <f:selectItem itemLabel="Compañero(a)" itemValue="companero"/>
+                        </h:selectOneMenu>
+                        <h:message for="parentesco"></h:message>
+                        <h:outputLabel value="Codigo / Identificacion del familiar:" for="codfamiliar"/>
+                        <h:inputText id="codfamiliar" label="codfamiliar"
+                                     required="true"
+                                     value="" />
+                        <h:message for="idrecibo"></h:message>
+                        <h:outputLabel value="* Deuda:" for="deuda"/>
+                        <h:selectOneMenu id="deuda" label="deuda" value="#" >
+                            <f:selectItem itemLabel="Si" itemValue="esposo"/>
+                            <f:selectItem itemLabel="No" itemValue="hijo"/>
+                        </h:selectOneMenu>
+                        <h:message for="deuda"></h:message>
+                        <h:message for="deuda"></h:message>
+                        <h:commandButton action="#{reciboController.create}" value="#{bundle.CreateReciboSaveLink}" />
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

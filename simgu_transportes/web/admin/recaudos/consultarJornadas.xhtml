@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./TemplateAdmin.xhtml">
+
+            <ui:define name="content">
+                <p class="breadcrumb">Usted está en: <a href="indexAdmin.xhtml">Inicio </a>| Consultar jornadas</p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                <h:outputText value="#{bundle.ListJornadaTitle}"></h:outputText><br />
+                <h:form>
+                        <p:dataTable value="#{jornadaController.items}" var="item" rows="10" paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListJornadaTitle_idjornada}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idjornada}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListJornadaTitle_nombrejornada}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.nombrejornada}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListJornadaTitle_valorjornada}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.valorjornada}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListJornadaTitle_horasjornada}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.horasjornada}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="&nbsp;"/>
+                                </f:facet>
+                                <h:commandLink action="#{jornadaController.prepareView}" value="#{bundle.ListJornadaViewLink}"/>
+                                <h:outputText value=" "/>
+                                <h:commandLink action="#{jornadaController.prepareEdit}" value="#{bundle.ListJornadaEditLink}"/>
+                                <h:outputText value=" "/>
+                                <h:commandLink action="#{jornadaController.destroy}" value="#{bundle.ListJornadaDestroyLink}"/>
+                            </p:column>
+                        </p:dataTable>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

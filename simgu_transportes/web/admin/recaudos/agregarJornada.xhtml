@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./TemplateAdmin.xhtml">
+
+            <ui:define name="content">
+                <p class="breadcrumb">Usted está en: <a href="indexAdmin.xhtml">Inicio </a>| Agregar jornada</p>
+                <h:outputText value="#{bundle.CreateJornadaTitle}"></h:outputText><br /><br />
+                <h:outputText value="Ingrese los siguientes datos: "></h:outputText>
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: blue" layout="table"/>
+                </h:panelGroup>
+                <h:form styleClass="jsfcrud_list_form">
+                    <h:panelGrid columns="3" columnClasses="alinder,alinder" cellspacing="3" >
+                        <h:outputLabel value="#{bundle.CreateJornadaLabel_idjornada}" for="idjornada" />
+                        <h:inputText id="idjornada" value="#{jornadaController.selected.idjornada}" title="#{bundle.CreateJornadaTitle_idjornada}" />
+                        <h:message for="idjornada"></h:message>
+                        <h:outputLabel value="#{bundle.CreateJornadaLabel_nombrejornada}" for="nombrejornada" />
+                        <h:inputText id="nombrejornada" value="#{jornadaController.selected.nombrejornada}" title="#{bundle.CreateJornadaTitle_nombrejornada}" required="true" requiredMessage="Campo requerido"/>
+                        <h:message for="nombrejornada"></h:message>
+                        <h:outputLabel value="#{bundle.CreateJornadaLabel_valorjornada}" for="valorjornada" />
+                        <h:inputText id="valorjornada" value="#{jornadaController.selected.valorjornada}" title="#{bundle.CreateJornadaTitle_valorjornada}" required="true" requiredMessage="Campo requerido"/>
+                        <h:message for="valorjornada"></h:message>
+                        <h:outputLabel value="#{bundle.CreateJornadaLabel_horasjornada}" for="horasjornada" />
+                        <h:inputText id="horasjornada" value="#{jornadaController.selected.horasjornada}" title="#{bundle.CreateJornadaTitle_horasjornada}" required="true" requiredMessage="Campo requerido"/>
+                        <h:message for="horasjornada"></h:message>
+                        <br />
+                        <h:commandButton action="#{jornadaController.create}" value="#{bundle.CreateJornadaSaveLink}" />
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

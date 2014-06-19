@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/TemplateAdmin.xhtml">
+
+        <ui:define name="content">
+            <p class="breadcrumb">Usted está en: <a href="indexAdmin.xhtml">Inicio </a>| Consultar recibo</p><br />
+            <h:outputText value="#{bundle.EditReciboTitle}"></h:outputText><br /><br />
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="3">
+                    <h:outputLabel value="#{bundle.EditReciboLabel_idrecibo}" for="idrecibo" />
+                    <h:inputText id="idrecibo" value="#{reciboController.selected.idrecibo}" title="#{bundle.EditReciboTitle_idrecibo}" required="true" requiredMessage="#{bundle.EditReciboRequiredMessage_idrecibo}"/>
+                    <h:message for="idrecibo"></h:message>
+                    <h:outputLabel value="#{bundle.EditReciboLabel_idjornada}" for="idjornada" />
+                    <h:inputText id="idjornada" value="#{reciboController.selected.idjornada}" title="#{bundle.EditReciboTitle_idjornada}" />
+                    <h:message for="idrecibo"></h:message>
+                    <h:outputLabel value="#{bundle.EditReciboLabel_valorrecibo}" for="valorrecibo" />
+                    <h:inputText id="valorrecibo" value="#{reciboController.selected.valorrecibo}" title="#{bundle.EditReciboTitle_valorrecibo}" />
+                    <h:message for="idrecibo"></h:message>
+                    <h:outputLabel value="#{bundle.EditReciboLabel_fechaingreso}" for="fechaingreso" />
+                    <h:inputText id="fechaingreso" value="#{reciboController.selected.fechaingreso}" title="#{bundle.EditReciboTitle_fechaingreso}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:message for="idrecibo"></h:message>
+                    <h:outputLabel value="#{bundle.EditReciboLabel_estadorecibo}" for="estadorecibo" />
+                    <h:inputText id="estadorecibo" value="#{reciboController.selected.estadorecibo}" title="#{bundle.EditReciboTitle_estadorecibo}" />
+                    <h:message for="idrecibo"></h:message>
+                    <h:outputLabel value="#{bundle.EditReciboLabel_dependecia}" for="dependecia" />
+                    <h:selectOneMenu id="dependecia" value="#{reciboController.selected.dependecia}" title="#{bundle.EditReciboTitle_dependecia}" required="true" requiredMessage="#{bundle.EditReciboRequiredMessage_dependecia}">
+                        <f:selectItems value="#{dependeciaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:message for="idrecibo"></h:message>
+                    <h:outputLabel value="#{bundle.EditReciboLabel_usuario}" for="usuario" />
+                    <h:selectOneMenu id="usuario" value="#{reciboController.selected.usuario}" title="#{bundle.EditReciboTitle_usuario}" required="true" requiredMessage="#{bundle.EditReciboRequiredMessage_usuario}">
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:message for="idrecibo"></h:message>
+                    <h:message for="idrecibo"></h:message>
+                    <h:commandButton action="#{reciboController.update}" value="#{bundle.EditReciboSaveLink}"/>
+                </h:panelGrid>
+                
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
