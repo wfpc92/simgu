@@ -78,7 +78,11 @@ public class MedidasGeneralesController implements Serializable {
         selectedItemIndex = -1;
         return "Create";
     }
-
+    public String prepareEvaluacion() {
+        current = (MedidasGenerales) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "CreateEvaluacion";
+    }
     public String create() {
         try {
             getFacade().create(current);

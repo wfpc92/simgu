@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewMedidasGeneralesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="medidas">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewMedidasGeneralesLabel_idUsuario}"/>
+                    <h:outputText value="#{medidasGeneralesController.selected.idUsuario}" title="#{bundle.ViewMedidasGeneralesTitle_idUsuario}"/>
+                    <h:outputText value="#{bundle.ViewMedidasGeneralesLabel_deporte}"/>
+                    <h:outputText value="#{medidasGeneralesController.selected.deporte}" title="#{bundle.ViewMedidasGeneralesTitle_deporte}"/>
+                    <h:outputText value="#{bundle.ViewMedidasGeneralesLabel_estado}"/>
+                    <h:outputText value="#{medidasGeneralesController.selected.estado}" title="#{bundle.ViewMedidasGeneralesTitle_estado}"/>
+                    <h:outputText value="#{bundle.ViewMedidasGeneralesLabel_estatura}"/>
+                    <h:outputText value="#{medidasGeneralesController.selected.estatura}" title="#{bundle.ViewMedidasGeneralesTitle_estatura}"/>
+                    <h:outputText value="#{bundle.ViewMedidasGeneralesLabel_fechaIngreso}"/>
+                    <h:outputText value="#{medidasGeneralesController.selected.fechaIngreso}" title="#{bundle.ViewMedidasGeneralesTitle_fechaIngreso}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewMedidasGeneralesLabel_peso}"/>
+                    <h:outputText value="#{medidasGeneralesController.selected.peso}" title="#{bundle.ViewMedidasGeneralesTitle_peso}"/>
+                    <h:outputText value="#{bundle.ViewMedidasGeneralesLabel_sedentario}"/>
+                    <h:outputText value="#{medidasGeneralesController.selected.sedentario}" title="#{bundle.ViewMedidasGeneralesTitle_sedentario}"/>
+                    <h:outputText value="#{bundle.ViewMedidasGeneralesLabel_sexo}"/>
+                    <h:outputText value="#{medidasGeneralesController.selected.sexo}" title="#{bundle.ViewMedidasGeneralesTitle_sexo}"/>
+                    <h:outputText value="#{bundle.ViewMedidasGeneralesLabel_biepicondilarFemoral}"/>
+                    <h:outputText value="#{medidasGeneralesController.selected.biepicondilarFemoral}" title="#{bundle.ViewMedidasGeneralesTitle_biepicondilarFemoral}"/>
+                    <h:outputText value="#{bundle.ViewMedidasGeneralesLabel_biepicondilarHumeral}"/>
+                    <h:outputText value="#{medidasGeneralesController.selected.biepicondilarHumeral}" title="#{bundle.ViewMedidasGeneralesTitle_biepicondilarHumeral}"/>
+                    <h:outputText value="#{bundle.ViewMedidasGeneralesLabel_radioCubital}"/>
+                    <h:outputText value="#{medidasGeneralesController.selected.radioCubital}" title="#{bundle.ViewMedidasGeneralesTitle_radioCubital}"/>
+                    <h:outputText value="#{bundle.ViewMedidasGeneralesLabel_usuario}"/>
+                    <h:outputText value="#{medidasGeneralesController.selected.usuario}" title="#{bundle.ViewMedidasGeneralesTitle_usuario}"/>
+                </h:panelGrid>
+                <p:commandButton action="#{medidasGeneralesController.prepareList}" value="Regresar" ajax="false" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
