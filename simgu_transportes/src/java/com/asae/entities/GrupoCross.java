@@ -9,6 +9,7 @@ package com.asae.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -46,7 +47,7 @@ public class GrupoCross implements Serializable {
         @JoinColumn(name = "ID_DIA", referencedColumnName = "ID_DIA")})
     @ManyToMany
     private List<Dia> diaList;
-    @ManyToMany(mappedBy = "grupoCrossList")
+    @ManyToMany(mappedBy = "grupoCrossList", cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
     private List<EjercicioCross> ejercicioCrossList;
     @JoinColumn(name = "IDGRUPO_CROSS_GENERAL", referencedColumnName = "IDGRUPO_CROSS_GENERAL")
     @ManyToOne

@@ -9,7 +9,9 @@ package com.asae.sessionbeans;
 import com.asae.entities.Ejercicio;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +30,14 @@ public class EjercicioFacade extends AbstractFacade<Ejercicio> {
     public EjercicioFacade() {
         super(Ejercicio.class);
     }
-    
+    public Ejercicio findEjercicioByName(String name) {
+        try {
+            Query query = em.createNamedQuery("Ejercicio.findByNombre");
+            query.setParameter("nombre", name);
+            query.setMaxResults(1);
+            return (Ejercicio) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
 }

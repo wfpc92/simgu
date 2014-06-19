@@ -7,6 +7,7 @@
 package com.asae.sessionbeans;
 
 import com.asae.entities.GrupoMuscular;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +28,14 @@ public class GrupoMuscularFacade extends AbstractFacade<GrupoMuscular> {
 
     public GrupoMuscularFacade() {
         super(GrupoMuscular.class);
+    }
+    
+    public List<GrupoMuscular> findGMuscularesDia(int idDia){
+        return getEntityManager().createNamedQuery("GrupoMuscular.findGMuscularesDia").setParameter("idDia", idDia).getResultList();
+    }
+    
+    public List<GrupoMuscular> findGMuscularesSinDia(){
+        return getEntityManager().createNativeQuery("select gm.ID_GRUPO_MUSCULAR,gm.IDGRUPO_MUSCULAR_GENERAL from grupo_muscular gm left join dia_grupo_muscular dgm on gm.ID_GRUPO_MUSCULAR = dgm.ID_GRUPO_MUSCULAR where dgm.ID_GRUPO_MUSCULAR is null",GrupoMuscular.class).getResultList();
     }
     
 }

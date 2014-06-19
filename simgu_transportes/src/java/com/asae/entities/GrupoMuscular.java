@@ -9,6 +9,7 @@ package com.asae.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,6 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "GrupoMuscular.findAll", query = "SELECT g FROM GrupoMuscular g"),
+    @NamedQuery(name = "GrupoMuscular.findGMuscularesDia", query = "SELECT g FROM GrupoMuscular g JOIN g.diaList d WHERE d.idDia = :idDia"),
     @NamedQuery(name = "GrupoMuscular.findByIdGrupoMuscular", query = "SELECT g FROM GrupoMuscular g WHERE g.idGrupoMuscular = :idGrupoMuscular")})
 public class GrupoMuscular implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -41,7 +43,7 @@ public class GrupoMuscular implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID_GRUPO_MUSCULAR")
     private Integer idGrupoMuscular;
-    @ManyToMany(mappedBy = "grupoMuscularList")
+    @ManyToMany(mappedBy = "grupoMuscularList", cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
     private List<EjercicioGm> ejercicioGmList;
     @JoinTable(name = "dia_grupo_muscular", joinColumns = {
         @JoinColumn(name = "ID_GRUPO_MUSCULAR", referencedColumnName = "ID_GRUPO_MUSCULAR")}, inverseJoinColumns = {
