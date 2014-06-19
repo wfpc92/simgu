@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>estadisticas  personas</title>
+        <h:outputStylesheet library="css" name="Estilostablas.css"/>
+    </h:head>
+    <body>
+
+        <ui:composition template="./TemplateAdmin.xhtml">
+
+            <ui:define name="content">
+                <p class="breadcrumb">Usted está en: <a href="indexAdmin.xhtml">Inicio </a>| Resultados estadisticas personas</p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                <!--<h:outputText value="#{bundle.ListReciboTitle}"></h:outputText><br />-->
+                <h:form>
+                    <p:dataTable value="#{mBRecaudos.lstPersonas}" var="item" rows="10"
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReciboTitle_idrecibo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idrecibo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReciboTitle_idjornada}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idjornada}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReciboTitle_valorrecibo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valorrecibo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReciboTitle_fechaingreso}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaingreso}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReciboTitle_estadorecibo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estadorecibo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReciboTitle_dependecia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dependecia}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReciboTitle_usuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.usuario}"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

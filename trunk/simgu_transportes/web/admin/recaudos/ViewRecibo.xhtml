@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/TemplateAdmin.xhtml">
+        <!--<ui:define name="title">
+            <h:outputText value="#{bundle.ViewReciboTitle}"></h:outputText>
+        </ui:define>-->
+        <ui:define name="content">
+            <p class="breadcrumb">Usted está en: <a href="indexAdmin.xhtml">Inicio </a>| Ver recibo</p><br />
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="3">
+                    <h:outputText value="#{bundle.ViewReciboLabel_idrecibo}"/>
+                    <h:outputText value="#{reciboController.selected.idrecibo}" title="#{bundle.ViewReciboTitle_idrecibo}"/>
+                    <h:message for="idrecibo"></h:message>
+                    <h:outputText value="#{bundle.ViewReciboLabel_idjornada}"/>
+                    <h:outputText value="#{reciboController.selected.idjornada}" title="#{bundle.ViewReciboTitle_idjornada}"/>
+                    <h:message for="idrecibo"></h:message>
+                    <h:outputText value="#{bundle.ViewReciboLabel_valorrecibo}"/>
+                    <h:outputText value="#{reciboController.selected.valorrecibo}" title="#{bundle.ViewReciboTitle_valorrecibo}"/>
+                    <h:message for="idrecibo"></h:message>
+                    <h:outputText value="#{bundle.ViewReciboLabel_fechaingreso}"/>
+                    <h:outputText value="#{reciboController.selected.fechaingreso}" title="#{bundle.ViewReciboTitle_fechaingreso}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:message for="idrecibo"></h:message>
+                    <h:outputText value="#{bundle.ViewReciboLabel_estadorecibo}"/>
+                    <h:outputText value="#{reciboController.selected.estadorecibo}" title="#{bundle.ViewReciboTitle_estadorecibo}"/>
+                    <h:message for="idrecibo"></h:message>
+                    <h:outputText value="#{bundle.ViewReciboLabel_dependecia}"/>
+                    <h:outputText value="#{reciboController.selected.dependecia}" title="#{bundle.ViewReciboTitle_dependecia}"/>
+                    <h:message for="idrecibo"></h:message>
+                    <h:outputText value="#{bundle.ViewReciboLabel_usuario}"/>
+                    <h:outputText value="#{reciboController.selected.usuario}" title="#{bundle.ViewReciboTitle_usuario}"/>
+                    <h:message for="idrecibo"></h:message>
+                </h:panelGrid>
+                <br />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
