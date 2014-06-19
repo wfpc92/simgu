@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewResultadosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewResultadosLabel_idresultados}"/>
+                    <h:outputText value="#{resultadosController.selected.idresultados}" title="#{bundle.ViewResultadosTitle_idresultados}"/>
+                    <h:outputText value="#{bundle.ViewResultadosLabel_sumatoriapliegues}"/>
+                    <h:outputText value="#{resultadosController.selected.sumatoriapliegues}" title="#{bundle.ViewResultadosTitle_sumatoriapliegues}"/>
+                    <h:outputText value="#{bundle.ViewResultadosLabel_porcentajegrasa}"/>
+                    <h:outputText value="#{resultadosController.selected.porcentajegrasa}" title="#{bundle.ViewResultadosTitle_porcentajegrasa}"/>
+                    <h:outputText value="#{bundle.ViewResultadosLabel_pesograso}"/>
+                    <h:outputText value="#{resultadosController.selected.pesograso}" title="#{bundle.ViewResultadosTitle_pesograso}"/>
+                    <h:outputText value="#{bundle.ViewResultadosLabel_pesolibregrasa}"/>
+                    <h:outputText value="#{resultadosController.selected.pesolibregrasa}" title="#{bundle.ViewResultadosTitle_pesolibregrasa}"/>
+                    <h:outputText value="#{bundle.ViewResultadosLabel_masamuscular}"/>
+                    <h:outputText value="#{resultadosController.selected.masamuscular}" title="#{bundle.ViewResultadosTitle_masamuscular}"/>
+                    <h:outputText value="#{bundle.ViewResultadosLabel_pesoideal}"/>
+                    <h:outputText value="#{resultadosController.selected.pesoideal}" title="#{bundle.ViewResultadosTitle_pesoideal}"/>
+                    <h:outputText value="#{bundle.ViewResultadosLabel_indmasamuscular}"/>
+                    <h:outputText value="#{resultadosController.selected.indmasamuscular}" title="#{bundle.ViewResultadosTitle_indmasamuscular}"/>
+                    <h:outputText value="#{bundle.ViewResultadosLabel_complexion}"/>
+                    <h:outputText value="#{resultadosController.selected.complexion}" title="#{bundle.ViewResultadosTitle_complexion}"/>
+                    <h:outputText value="#{bundle.ViewResultadosLabel_tasametabbasal}"/>
+                    <h:outputText value="#{resultadosController.selected.tasametabbasal}" title="#{bundle.ViewResultadosTitle_tasametabbasal}"/>
+                    <h:outputText value="#{bundle.ViewResultadosLabel_excesopeso}"/>
+                    <h:outputText value="#{resultadosController.selected.excesopeso}" title="#{bundle.ViewResultadosTitle_excesopeso}"/>
+                    <h:outputText value="#{bundle.ViewResultadosLabel_pesooptimo}"/>
+                    <h:outputText value="#{resultadosController.selected.pesooptimo}" title="#{bundle.ViewResultadosTitle_pesooptimo}"/>
+                    <h:outputText value="#{bundle.ViewResultadosLabel_fecharesultados}"/>
+                    <h:outputText value="#{resultadosController.selected.fecharesultados}" title="#{bundle.ViewResultadosTitle_fecharesultados}"/>
+                    <h:outputText value="#{bundle.ViewResultadosLabel_resgrasa}"/>
+                    <h:outputText value="#{resultadosController.selected.resgrasa}" title="#{bundle.ViewResultadosTitle_resgrasa}"/>
+                    <h:outputText value="#{bundle.ViewResultadosLabel_rescomplexion}"/>
+                    <h:outputText value="#{resultadosController.selected.rescomplexion}" title="#{bundle.ViewResultadosTitle_rescomplexion}"/>
+                    <h:outputText value="#{bundle.ViewResultadosLabel_resimc}"/>
+                    <h:outputText value="#{resultadosController.selected.resimc}" title="#{bundle.ViewResultadosTitle_resimc}"/>
+                    <h:outputText value="#{bundle.ViewResultadosLabel_idusuario}"/>
+                    <h:outputText value="#{resultadosController.selected.idusuario}" title="#{bundle.ViewResultadosTitle_idusuario}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{resultadosController.destroyAndView}" value="#{bundle.ViewResultadosDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewResultadosEditLink}"/>
+                <br />
+                <h:commandLink action="#{resultadosController.prepareCreate}" value="#{bundle.ViewResultadosCreateLink}" />
+                <br />
+                <h:commandLink action="#{resultadosController.prepareList}" value="#{bundle.ViewResultadosShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewResultadosIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

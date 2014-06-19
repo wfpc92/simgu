@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewMedidasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewMedidasLabel_idMedidas}"/>
+                    <h:outputText value="#{medidasController.selected.idMedidas}" title="#{bundle.ViewMedidasTitle_idMedidas}"/>
+                    <h:outputText value="#{bundle.ViewMedidasLabel_tricepsmedida}"/>
+                    <h:outputText value="#{medidasController.selected.tricepsmedida}" title="#{bundle.ViewMedidasTitle_tricepsmedida}"/>
+                    <h:outputText value="#{bundle.ViewMedidasLabel_subescapularmedida}"/>
+                    <h:outputText value="#{medidasController.selected.subescapularmedida}" title="#{bundle.ViewMedidasTitle_subescapularmedida}"/>
+                    <h:outputText value="#{bundle.ViewMedidasLabel_suprailiacomedida}"/>
+                    <h:outputText value="#{medidasController.selected.suprailiacomedida}" title="#{bundle.ViewMedidasTitle_suprailiacomedida}"/>
+                    <h:outputText value="#{bundle.ViewMedidasLabel_abdominalmedida}"/>
+                    <h:outputText value="#{medidasController.selected.abdominalmedida}" title="#{bundle.ViewMedidasTitle_abdominalmedida}"/>
+                    <h:outputText value="#{bundle.ViewMedidasLabel_muslomedida}"/>
+                    <h:outputText value="#{medidasController.selected.muslomedida}" title="#{bundle.ViewMedidasTitle_muslomedida}"/>
+                    <h:outputText value="#{bundle.ViewMedidasLabel_pantorrillamedida}"/>
+                    <h:outputText value="#{medidasController.selected.pantorrillamedida}" title="#{bundle.ViewMedidasTitle_pantorrillamedida}"/>
+                    <h:outputText value="#{bundle.ViewMedidasLabel_perimetromunecamedida}"/>
+                    <h:outputText value="#{medidasController.selected.perimetromunecamedida}" title="#{bundle.ViewMedidasTitle_perimetromunecamedida}"/>
+                    <h:outputText value="#{bundle.ViewMedidasLabel_perimetrobrazomedida}"/>
+                    <h:outputText value="#{medidasController.selected.perimetrobrazomedida}" title="#{bundle.ViewMedidasTitle_perimetrobrazomedida}"/>
+                    <h:outputText value="#{bundle.ViewMedidasLabel_perimetroantebrazomedida}"/>
+                    <h:outputText value="#{medidasController.selected.perimetroantebrazomedida}" title="#{bundle.ViewMedidasTitle_perimetroantebrazomedida}"/>
+                    <h:outputText value="#{bundle.ViewMedidasLabel_perimetropantorrillamedida}"/>
+                    <h:outputText value="#{medidasController.selected.perimetropantorrillamedida}" title="#{bundle.ViewMedidasTitle_perimetropantorrillamedida}"/>
+                    <h:outputText value="#{bundle.ViewMedidasLabel_perimetrocajatoraxicamedida}"/>
+                    <h:outputText value="#{medidasController.selected.perimetrocajatoraxicamedida}" title="#{bundle.ViewMedidasTitle_perimetrocajatoraxicamedida}"/>
+                    <h:outputText value="#{bundle.ViewMedidasLabel_perimetromuslomedida}"/>
+                    <h:outputText value="#{medidasController.selected.perimetromuslomedida}" title="#{bundle.ViewMedidasTitle_perimetromuslomedida}"/>
+                    <h:outputText value="#{bundle.ViewMedidasLabel_fechamedidas}"/>
+                    <h:outputText value="#{medidasController.selected.fechamedidas}" title="#{bundle.ViewMedidasTitle_fechamedidas}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewMedidasLabel_peso}"/>
+                    <h:outputText value="#{medidasController.selected.peso}" title="#{bundle.ViewMedidasTitle_peso}"/>
+                    <h:outputText value="#{bundle.ViewMedidasLabel_altura}"/>
+                    <h:outputText value="#{medidasController.selected.altura}" title="#{bundle.ViewMedidasTitle_altura}"/>
+                    <h:outputText value="#{bundle.ViewMedidasLabel_idusuario}"/>
+                    <h:outputText value="#{medidasController.selected.idusuario}" title="#{bundle.ViewMedidasTitle_idusuario}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{medidasController.destroyAndView}" value="#{bundle.ViewMedidasDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewMedidasEditLink}"/>
+                <br />
+                <h:commandLink action="#{medidasController.prepareCreate}" value="#{bundle.ViewMedidasCreateLink}" />
+                <br />
+                <h:commandLink action="#{medidasController.prepareList}" value="#{bundle.ViewMedidasShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewMedidasIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

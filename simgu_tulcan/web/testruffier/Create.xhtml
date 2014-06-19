@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTestruffierTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTestruffierLabel_idtestruffier}" for="idtestruffier" />
+                    <h:inputText id="idtestruffier" value="#{testruffierController.selected.idtestruffier}" title="#{bundle.CreateTestruffierTitle_idtestruffier}" required="true" requiredMessage="#{bundle.CreateTestruffierRequiredMessage_idtestruffier}"/>
+                    <h:outputLabel value="#{bundle.CreateTestruffierLabel_pulso0ruffier}" for="pulso0ruffier" />
+                    <h:inputText id="pulso0ruffier" value="#{testruffierController.selected.pulso0ruffier}" title="#{bundle.CreateTestruffierTitle_pulso0ruffier}" required="true" requiredMessage="#{bundle.CreateTestruffierRequiredMessage_pulso0ruffier}"/>
+                    <h:outputLabel value="#{bundle.CreateTestruffierLabel_pulso1ruffier}" for="pulso1ruffier" />
+                    <h:inputText id="pulso1ruffier" value="#{testruffierController.selected.pulso1ruffier}" title="#{bundle.CreateTestruffierTitle_pulso1ruffier}" required="true" requiredMessage="#{bundle.CreateTestruffierRequiredMessage_pulso1ruffier}"/>
+                    <h:outputLabel value="#{bundle.CreateTestruffierLabel_pulso2ruffier}" for="pulso2ruffier" />
+                    <h:inputText id="pulso2ruffier" value="#{testruffierController.selected.pulso2ruffier}" title="#{bundle.CreateTestruffierTitle_pulso2ruffier}" required="true" requiredMessage="#{bundle.CreateTestruffierRequiredMessage_pulso2ruffier}"/>
+                    <h:outputLabel value="#{bundle.CreateTestruffierLabel_resultadoruffier}" for="resultadoruffier" />
+                    <h:inputText id="resultadoruffier" value="#{testruffierController.selected.resultadoruffier}" title="#{bundle.CreateTestruffierTitle_resultadoruffier}" required="true" requiredMessage="#{bundle.CreateTestruffierRequiredMessage_resultadoruffier}"/>
+                    <h:outputLabel value="#{bundle.CreateTestruffierLabel_fecharuffier}" for="fecharuffier" />
+                    <h:inputText id="fecharuffier" value="#{testruffierController.selected.fecharuffier}" title="#{bundle.CreateTestruffierTitle_fecharuffier}" required="true" requiredMessage="#{bundle.CreateTestruffierRequiredMessage_fecharuffier}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateTestruffierLabel_calificacion}" for="calificacion" />
+                    <h:inputText id="calificacion" value="#{testruffierController.selected.calificacion}" title="#{bundle.CreateTestruffierTitle_calificacion}" required="true" requiredMessage="#{bundle.CreateTestruffierRequiredMessage_calificacion}"/>
+                    <h:outputLabel value="#{bundle.CreateTestruffierLabel_idusuario}" for="idusuario" />
+                    <h:selectOneMenu id="idusuario" value="#{testruffierController.selected.idusuario}" title="#{bundle.CreateTestruffierTitle_idusuario}" >
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{testruffierController.create}" value="#{bundle.CreateTestruffierSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{testruffierController.prepareList}" value="#{bundle.CreateTestruffierShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateTestruffierIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

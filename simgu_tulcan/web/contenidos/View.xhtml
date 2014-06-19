@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewContenidosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewContenidosLabel_idcontenido}"/>
+                    <h:outputText value="#{contenidosController.selected.idcontenido}" title="#{bundle.ViewContenidosTitle_idcontenido}"/>
+                    <h:outputText value="#{bundle.ViewContenidosLabel_titulocontenido}"/>
+                    <h:outputText value="#{contenidosController.selected.titulocontenido}" title="#{bundle.ViewContenidosTitle_titulocontenido}"/>
+                    <h:outputText value="#{bundle.ViewContenidosLabel_descripcioncontenido}"/>
+                    <h:outputText value="#{contenidosController.selected.descripcioncontenido}" title="#{bundle.ViewContenidosTitle_descripcioncontenido}"/>
+                    <h:outputText value="#{bundle.ViewContenidosLabel_textocontenido}"/>
+                    <h:outputText value="#{contenidosController.selected.textocontenido}" title="#{bundle.ViewContenidosTitle_textocontenido}"/>
+                    <h:outputText value="#{bundle.ViewContenidosLabel_tipocontenido}"/>
+                    <h:outputText value="#{contenidosController.selected.tipocontenido}" title="#{bundle.ViewContenidosTitle_tipocontenido}"/>
+                    <h:outputText value="#{bundle.ViewContenidosLabel_estadocontenido}"/>
+                    <h:outputText value="#{contenidosController.selected.estadocontenido}" title="#{bundle.ViewContenidosTitle_estadocontenido}"/>
+                    <h:outputText value="#{bundle.ViewContenidosLabel_fechapublicacion}"/>
+                    <h:outputText value="#{contenidosController.selected.fechapublicacion}" title="#{bundle.ViewContenidosTitle_fechapublicacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{contenidosController.destroyAndView}" value="#{bundle.ViewContenidosDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewContenidosEditLink}"/>
+                <br />
+                <h:commandLink action="#{contenidosController.prepareCreate}" value="#{bundle.ViewContenidosCreateLink}" />
+                <br />
+                <h:commandLink action="#{contenidosController.prepareList}" value="#{bundle.ViewContenidosShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewContenidosIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

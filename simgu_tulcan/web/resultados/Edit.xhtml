@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditResultadosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditResultadosLabel_idresultados}" for="idresultados" />
+                    <h:inputText id="idresultados" value="#{resultadosController.selected.idresultados}" title="#{bundle.EditResultadosTitle_idresultados}" required="true" requiredMessage="#{bundle.EditResultadosRequiredMessage_idresultados}"/>
+                    <h:outputLabel value="#{bundle.EditResultadosLabel_sumatoriapliegues}" for="sumatoriapliegues" />
+                    <h:inputText id="sumatoriapliegues" value="#{resultadosController.selected.sumatoriapliegues}" title="#{bundle.EditResultadosTitle_sumatoriapliegues}" required="true" requiredMessage="#{bundle.EditResultadosRequiredMessage_sumatoriapliegues}"/>
+                    <h:outputLabel value="#{bundle.EditResultadosLabel_porcentajegrasa}" for="porcentajegrasa" />
+                    <h:inputText id="porcentajegrasa" value="#{resultadosController.selected.porcentajegrasa}" title="#{bundle.EditResultadosTitle_porcentajegrasa}" required="true" requiredMessage="#{bundle.EditResultadosRequiredMessage_porcentajegrasa}"/>
+                    <h:outputLabel value="#{bundle.EditResultadosLabel_pesograso}" for="pesograso" />
+                    <h:inputText id="pesograso" value="#{resultadosController.selected.pesograso}" title="#{bundle.EditResultadosTitle_pesograso}" required="true" requiredMessage="#{bundle.EditResultadosRequiredMessage_pesograso}"/>
+                    <h:outputLabel value="#{bundle.EditResultadosLabel_pesolibregrasa}" for="pesolibregrasa" />
+                    <h:inputText id="pesolibregrasa" value="#{resultadosController.selected.pesolibregrasa}" title="#{bundle.EditResultadosTitle_pesolibregrasa}" required="true" requiredMessage="#{bundle.EditResultadosRequiredMessage_pesolibregrasa}"/>
+                    <h:outputLabel value="#{bundle.EditResultadosLabel_masamuscular}" for="masamuscular" />
+                    <h:inputText id="masamuscular" value="#{resultadosController.selected.masamuscular}" title="#{bundle.EditResultadosTitle_masamuscular}" required="true" requiredMessage="#{bundle.EditResultadosRequiredMessage_masamuscular}"/>
+                    <h:outputLabel value="#{bundle.EditResultadosLabel_pesoideal}" for="pesoideal" />
+                    <h:inputText id="pesoideal" value="#{resultadosController.selected.pesoideal}" title="#{bundle.EditResultadosTitle_pesoideal}" required="true" requiredMessage="#{bundle.EditResultadosRequiredMessage_pesoideal}"/>
+                    <h:outputLabel value="#{bundle.EditResultadosLabel_indmasamuscular}" for="indmasamuscular" />
+                    <h:inputText id="indmasamuscular" value="#{resultadosController.selected.indmasamuscular}" title="#{bundle.EditResultadosTitle_indmasamuscular}" required="true" requiredMessage="#{bundle.EditResultadosRequiredMessage_indmasamuscular}"/>
+                    <h:outputLabel value="#{bundle.EditResultadosLabel_complexion}" for="complexion" />
+                    <h:inputText id="complexion" value="#{resultadosController.selected.complexion}" title="#{bundle.EditResultadosTitle_complexion}" required="true" requiredMessage="#{bundle.EditResultadosRequiredMessage_complexion}"/>
+                    <h:outputLabel value="#{bundle.EditResultadosLabel_tasametabbasal}" for="tasametabbasal" />
+                    <h:inputText id="tasametabbasal" value="#{resultadosController.selected.tasametabbasal}" title="#{bundle.EditResultadosTitle_tasametabbasal}" required="true" requiredMessage="#{bundle.EditResultadosRequiredMessage_tasametabbasal}"/>
+                    <h:outputLabel value="#{bundle.EditResultadosLabel_excesopeso}" for="excesopeso" />
+                    <h:inputText id="excesopeso" value="#{resultadosController.selected.excesopeso}" title="#{bundle.EditResultadosTitle_excesopeso}" required="true" requiredMessage="#{bundle.EditResultadosRequiredMessage_excesopeso}"/>
+                    <h:outputLabel value="#{bundle.EditResultadosLabel_pesooptimo}" for="pesooptimo" />
+                    <h:inputText id="pesooptimo" value="#{resultadosController.selected.pesooptimo}" title="#{bundle.EditResultadosTitle_pesooptimo}" required="true" requiredMessage="#{bundle.EditResultadosRequiredMessage_pesooptimo}"/>
+                    <h:outputLabel value="#{bundle.EditResultadosLabel_fecharesultados}" for="fecharesultados" />
+                    <h:inputText id="fecharesultados" value="#{resultadosController.selected.fecharesultados}" title="#{bundle.EditResultadosTitle_fecharesultados}" required="true" requiredMessage="#{bundle.EditResultadosRequiredMessage_fecharesultados}"/>
+                    <h:outputLabel value="#{bundle.EditResultadosLabel_resgrasa}" for="resgrasa" />
+                    <h:inputText id="resgrasa" value="#{resultadosController.selected.resgrasa}" title="#{bundle.EditResultadosTitle_resgrasa}" required="true" requiredMessage="#{bundle.EditResultadosRequiredMessage_resgrasa}"/>
+                    <h:outputLabel value="#{bundle.EditResultadosLabel_rescomplexion}" for="rescomplexion" />
+                    <h:inputText id="rescomplexion" value="#{resultadosController.selected.rescomplexion}" title="#{bundle.EditResultadosTitle_rescomplexion}" required="true" requiredMessage="#{bundle.EditResultadosRequiredMessage_rescomplexion}"/>
+                    <h:outputLabel value="#{bundle.EditResultadosLabel_resimc}" for="resimc" />
+                    <h:inputText id="resimc" value="#{resultadosController.selected.resimc}" title="#{bundle.EditResultadosTitle_resimc}" required="true" requiredMessage="#{bundle.EditResultadosRequiredMessage_resimc}"/>
+                    <h:outputLabel value="#{bundle.EditResultadosLabel_idusuario}" for="idusuario" />
+                    <h:selectOneMenu id="idusuario" value="#{resultadosController.selected.idusuario}" title="#{bundle.EditResultadosTitle_idusuario}" >
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{resultadosController.update}" value="#{bundle.EditResultadosSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditResultadosViewLink}"/>
+                <br />
+                <h:commandLink action="#{resultadosController.prepareList}" value="#{bundle.EditResultadosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditResultadosIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

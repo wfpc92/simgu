@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTestsargentTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTestsargentLabel_idtestsargent}" for="idtestsargent" />
+                    <h:inputText id="idtestsargent" value="#{testsargentController.selected.idtestsargent}" title="#{bundle.EditTestsargentTitle_idtestsargent}" required="true" requiredMessage="#{bundle.EditTestsargentRequiredMessage_idtestsargent}"/>
+                    <h:outputLabel value="#{bundle.EditTestsargentLabel_embergadurasargent}" for="embergadurasargent" />
+                    <h:inputText id="embergadurasargent" value="#{testsargentController.selected.embergadurasargent}" title="#{bundle.EditTestsargentTitle_embergadurasargent}" required="true" requiredMessage="#{bundle.EditTestsargentRequiredMessage_embergadurasargent}"/>
+                    <h:outputLabel value="#{bundle.EditTestsargentLabel_saltomaximosargent}" for="saltomaximosargent" />
+                    <h:inputText id="saltomaximosargent" value="#{testsargentController.selected.saltomaximosargent}" title="#{bundle.EditTestsargentTitle_saltomaximosargent}" required="true" requiredMessage="#{bundle.EditTestsargentRequiredMessage_saltomaximosargent}"/>
+                    <h:outputLabel value="#{bundle.EditTestsargentLabel_saltorealsargent}" for="saltorealsargent" />
+                    <h:inputText id="saltorealsargent" value="#{testsargentController.selected.saltorealsargent}" title="#{bundle.EditTestsargentTitle_saltorealsargent}" required="true" requiredMessage="#{bundle.EditTestsargentRequiredMessage_saltorealsargent}"/>
+                    <h:outputLabel value="#{bundle.EditTestsargentLabel_fechasargent}" for="fechasargent" />
+                    <h:inputText id="fechasargent" value="#{testsargentController.selected.fechasargent}" title="#{bundle.EditTestsargentTitle_fechasargent}" required="true" requiredMessage="#{bundle.EditTestsargentRequiredMessage_fechasargent}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditTestsargentLabel_calificacionsargent}" for="calificacionsargent" />
+                    <h:inputText id="calificacionsargent" value="#{testsargentController.selected.calificacionsargent}" title="#{bundle.EditTestsargentTitle_calificacionsargent}" required="true" requiredMessage="#{bundle.EditTestsargentRequiredMessage_calificacionsargent}"/>
+                    <h:outputLabel value="#{bundle.EditTestsargentLabel_idusuario}" for="idusuario" />
+                    <h:selectOneMenu id="idusuario" value="#{testsargentController.selected.idusuario}" title="#{bundle.EditTestsargentTitle_idusuario}" >
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{testsargentController.update}" value="#{bundle.EditTestsargentSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTestsargentViewLink}"/>
+                <br />
+                <h:commandLink action="#{testsargentController.prepareList}" value="#{bundle.EditTestsargentShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTestsargentIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

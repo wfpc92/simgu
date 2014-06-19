@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTestsargentTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTestsargentLabel_idtestsargent}"/>
+                    <h:outputText value="#{testsargentController.selected.idtestsargent}" title="#{bundle.ViewTestsargentTitle_idtestsargent}"/>
+                    <h:outputText value="#{bundle.ViewTestsargentLabel_embergadurasargent}"/>
+                    <h:outputText value="#{testsargentController.selected.embergadurasargent}" title="#{bundle.ViewTestsargentTitle_embergadurasargent}"/>
+                    <h:outputText value="#{bundle.ViewTestsargentLabel_saltomaximosargent}"/>
+                    <h:outputText value="#{testsargentController.selected.saltomaximosargent}" title="#{bundle.ViewTestsargentTitle_saltomaximosargent}"/>
+                    <h:outputText value="#{bundle.ViewTestsargentLabel_saltorealsargent}"/>
+                    <h:outputText value="#{testsargentController.selected.saltorealsargent}" title="#{bundle.ViewTestsargentTitle_saltorealsargent}"/>
+                    <h:outputText value="#{bundle.ViewTestsargentLabel_fechasargent}"/>
+                    <h:outputText value="#{testsargentController.selected.fechasargent}" title="#{bundle.ViewTestsargentTitle_fechasargent}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewTestsargentLabel_calificacionsargent}"/>
+                    <h:outputText value="#{testsargentController.selected.calificacionsargent}" title="#{bundle.ViewTestsargentTitle_calificacionsargent}"/>
+                    <h:outputText value="#{bundle.ViewTestsargentLabel_idusuario}"/>
+                    <h:outputText value="#{testsargentController.selected.idusuario}" title="#{bundle.ViewTestsargentTitle_idusuario}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{testsargentController.destroyAndView}" value="#{bundle.ViewTestsargentDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTestsargentEditLink}"/>
+                <br />
+                <h:commandLink action="#{testsargentController.prepareCreate}" value="#{bundle.ViewTestsargentCreateLink}" />
+                <br />
+                <h:commandLink action="#{testsargentController.prepareList}" value="#{bundle.ViewTestsargentShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTestsargentIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

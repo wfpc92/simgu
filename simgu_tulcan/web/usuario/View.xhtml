@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewUsuarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_idusuario}"/>
+                    <h:outputText value="#{usuarioController.selected.idusuario}" title="#{bundle.ViewUsuarioTitle_idusuario}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_identification}"/>
+                    <h:outputText value="#{usuarioController.selected.identification}" title="#{bundle.ViewUsuarioTitle_identification}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_fisrtname}"/>
+                    <h:outputText value="#{usuarioController.selected.fisrtname}" title="#{bundle.ViewUsuarioTitle_fisrtname}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_login}"/>
+                    <h:outputText value="#{usuarioController.selected.login}" title="#{bundle.ViewUsuarioTitle_login}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_password}"/>
+                    <h:outputText value="#{usuarioController.selected.password}" title="#{bundle.ViewUsuarioTitle_password}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_secondname}"/>
+                    <h:outputText value="#{usuarioController.selected.secondname}" title="#{bundle.ViewUsuarioTitle_secondname}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_firstlastname}"/>
+                    <h:outputText value="#{usuarioController.selected.firstlastname}" title="#{bundle.ViewUsuarioTitle_firstlastname}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_secondlastname}"/>
+                    <h:outputText value="#{usuarioController.selected.secondlastname}" title="#{bundle.ViewUsuarioTitle_secondlastname}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_sex}"/>
+                    <h:outputText value="#{usuarioController.selected.sex}" title="#{bundle.ViewUsuarioTitle_sex}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_datebirth}"/>
+                    <h:outputText value="#{usuarioController.selected.datebirth}" title="#{bundle.ViewUsuarioTitle_datebirth}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_citybirth}"/>
+                    <h:outputText value="#{usuarioController.selected.citybirth}" title="#{bundle.ViewUsuarioTitle_citybirth}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_departmentbirth}"/>
+                    <h:outputText value="#{usuarioController.selected.departmentbirth}" title="#{bundle.ViewUsuarioTitle_departmentbirth}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_typeidentification}"/>
+                    <h:outputText value="#{usuarioController.selected.typeidentification}" title="#{bundle.ViewUsuarioTitle_typeidentification}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_rh}"/>
+                    <h:outputText value="#{usuarioController.selected.rh}" title="#{bundle.ViewUsuarioTitle_rh}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_gs}"/>
+                    <h:outputText value="#{usuarioController.selected.gs}" title="#{bundle.ViewUsuarioTitle_gs}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_eps}"/>
+                    <h:outputText value="#{usuarioController.selected.eps}" title="#{bundle.ViewUsuarioTitle_eps}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_arp}"/>
+                    <h:outputText value="#{usuarioController.selected.arp}" title="#{bundle.ViewUsuarioTitle_arp}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_address}"/>
+                    <h:outputText value="#{usuarioController.selected.address}" title="#{bundle.ViewUsuarioTitle_address}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_telephon}"/>
+                    <h:outputText value="#{usuarioController.selected.telephon}" title="#{bundle.ViewUsuarioTitle_telephon}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_movil}"/>
+                    <h:outputText value="#{usuarioController.selected.movil}" title="#{bundle.ViewUsuarioTitle_movil}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_email}"/>
+                    <h:outputText value="#{usuarioController.selected.email}" title="#{bundle.ViewUsuarioTitle_email}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_dependencia}"/>
+                    <h:outputText value="#{usuarioController.selected.dependencia}" title="#{bundle.ViewUsuarioTitle_dependencia}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_cargo}"/>
+                    <h:outputText value="#{usuarioController.selected.cargo}" title="#{bundle.ViewUsuarioTitle_cargo}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_jefedependencia}"/>
+                    <h:outputText value="#{usuarioController.selected.jefedependencia}" title="#{bundle.ViewUsuarioTitle_jefedependencia}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_telefonodependencia}"/>
+                    <h:outputText value="#{usuarioController.selected.telefonodependencia}" title="#{bundle.ViewUsuarioTitle_telefonodependencia}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_extensiondependencia}"/>
+                    <h:outputText value="#{usuarioController.selected.extensiondependencia}" title="#{bundle.ViewUsuarioTitle_extensiondependencia}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_emaildependencia}"/>
+                    <h:outputText value="#{usuarioController.selected.emaildependencia}" title="#{bundle.ViewUsuarioTitle_emaildependencia}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_parentezco}"/>
+                    <h:outputText value="#{usuarioController.selected.parentezco}" title="#{bundle.ViewUsuarioTitle_parentezco}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_idfamiliar}"/>
+                    <h:outputText value="#{usuarioController.selected.idfamiliar}" title="#{bundle.ViewUsuarioTitle_idfamiliar}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_roleIdrole}"/>
+                    <h:outputText value="#{usuarioController.selected.roleIdrole}" title="#{bundle.ViewUsuarioTitle_roleIdrole}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{usuarioController.destroyAndView}" value="#{bundle.ViewUsuarioDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewUsuarioEditLink}"/>
+                <br />
+                <h:commandLink action="#{usuarioController.prepareCreate}" value="#{bundle.ViewUsuarioCreateLink}" />
+                <br />
+                <h:commandLink action="#{usuarioController.prepareList}" value="#{bundle.ViewUsuarioShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewUsuarioIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTestruffierTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTestruffierEmpty}" rendered="#{testruffierController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{testruffierController.items.rowCount > 0}">
+                    <h:outputText value="#{testruffierController.pagination.pageFirstItem + 1}..#{testruffierController.pagination.pageLastItem + 1}/#{testruffierController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{testruffierController.previous}" value="#{bundle.Previous} #{testruffierController.pagination.pageSize}" rendered="#{testruffierController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{testruffierController.next}" value="#{bundle.Next} #{testruffierController.pagination.pageSize}" rendered="#{testruffierController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{testruffierController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTestruffierTitle_idtestruffier}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idtestruffier}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTestruffierTitle_pulso0ruffier}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pulso0ruffier}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTestruffierTitle_pulso1ruffier}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pulso1ruffier}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTestruffierTitle_pulso2ruffier}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pulso2ruffier}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTestruffierTitle_resultadoruffier}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.resultadoruffier}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTestruffierTitle_fecharuffier}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fecharuffier}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTestruffierTitle_calificacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.calificacion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTestruffierTitle_idusuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idusuario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{testruffierController.prepareView}" value="#{bundle.ListTestruffierViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{testruffierController.prepareEdit}" value="#{bundle.ListTestruffierEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{testruffierController.destroy}" value="#{bundle.ListTestruffierDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{testruffierController.prepareCreate}" value="#{bundle.ListTestruffierCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTestruffierIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
