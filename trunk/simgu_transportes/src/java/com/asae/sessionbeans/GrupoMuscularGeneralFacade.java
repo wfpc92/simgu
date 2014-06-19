@@ -9,7 +9,9 @@ package com.asae.sessionbeans;
 import com.asae.entities.GrupoMuscularGeneral;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +30,14 @@ public class GrupoMuscularGeneralFacade extends AbstractFacade<GrupoMuscularGene
     public GrupoMuscularGeneralFacade() {
         super(GrupoMuscularGeneral.class);
     }
-    
+    public GrupoMuscularGeneral findGMuscularGeneralByName(String name) {
+        try {
+            Query query = em.createNamedQuery("GrupoMuscularGeneral.findByNombre");
+            query.setParameter("nombre", name);
+            query.setMaxResults(1);
+            return (GrupoMuscularGeneral) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
 }

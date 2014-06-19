@@ -7,6 +7,7 @@
 package com.asae.sessionbeans;
 
 import com.asae.entities.EjercicioGm;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +29,7 @@ public class EjercicioGmFacade extends AbstractFacade<EjercicioGm> {
     public EjercicioGmFacade() {
         super(EjercicioGm.class);
     }
-    
+     public List<EjercicioGm> findEjerciciosGmSinGrupoMuscular(){
+        return getEntityManager().createNativeQuery("select e.EJERCICIO,e.NUMERO_SERIES,e.REPETICIONES,e.RECESO,e.PESO,e.idejerciciogm from ejercicio_gm e left join grupo_muscular_ejercicio_gm g on e.idejerciciogm = g.ID_EJERCICIO where g.ID_EJERCICIO is null",EjercicioGm.class).getResultList();
+    }  
 }

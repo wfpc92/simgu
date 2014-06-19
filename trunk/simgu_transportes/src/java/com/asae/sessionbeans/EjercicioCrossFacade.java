@@ -7,6 +7,7 @@
 package com.asae.sessionbeans;
 
 import com.asae.entities.EjercicioCross;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +29,7 @@ public class EjercicioCrossFacade extends AbstractFacade<EjercicioCross> {
     public EjercicioCrossFacade() {
         super(EjercicioCross.class);
     }
-    
+    public List<EjercicioCross> findEjerciciosCrossSinGCross(){
+        return getEntityManager().createNativeQuery("select ec.EJERCICIO,ec.IDMEDIDA_EJERCICIO_CROSS,ec.NUM_VECES_MEDIDA,ec.IDEJERCICIO_CROSS from ejercicio_cross ec left join cross_ejercicio_cross cec on ec.idejercicio_cross = cec.IDEJERCICIO_CROSS where cec.IDEJERCICIO_CROSS is null;",EjercicioCross.class).getResultList();
+    } 
 }

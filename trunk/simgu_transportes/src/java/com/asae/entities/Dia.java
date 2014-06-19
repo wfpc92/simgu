@@ -7,8 +7,10 @@
 package com.asae.entities;
 
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,6 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Dia.findAll", query = "SELECT d FROM Dia d"),
     @NamedQuery(name = "Dia.findByIdDia", query = "SELECT d FROM Dia d WHERE d.idDia = :idDia"),
+    @NamedQuery(name = "Dia.findByIdRutina", query = "SELECT d FROM Dia d JOIN d.rutinaList r WHERE r.idRutina = :idRutina ORDER BY d.numDia"),
     @NamedQuery(name = "Dia.findByNombre", query = "SELECT d FROM Dia d WHERE d.nombre = :nombre"),
     @NamedQuery(name = "Dia.findByNumDia", query = "SELECT d FROM Dia d WHERE d.numDia = :numDia")})
 public class Dia implements Serializable {
@@ -48,9 +51,9 @@ public class Dia implements Serializable {
     private String nombre;
     @Column(name = "NUM_DIA")
     private Integer numDia;
-    @ManyToMany(mappedBy = "diaList")
+    @ManyToMany(mappedBy = "diaList",cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
     private List<GrupoCross> grupoCrossList;
-    @ManyToMany(mappedBy = "diaList")
+    @ManyToMany(mappedBy = "diaList",cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
     private List<GrupoMuscular> grupoMuscularList;
     @JoinTable(name = "rutina_dia", joinColumns = {
         @JoinColumn(name = "ID_DIA", referencedColumnName = "ID_DIA")}, inverseJoinColumns = {
@@ -140,5 +143,14 @@ public class Dia implements Serializable {
     public String toString() {
         return "com.asae.entities.Dia[ idDia=" + idDia + " ]";
     }
+     public int compareTo(Dia d) {
+        return NUMDIA.compare(this, d);
+    }
     
+    public static Comparator<Dia> NUMDIA = new Comparator<Dia>() {
+            @Override
+            public int compare(Dia d1, Dia d2) {
+                return d1.numDia - d2.numDia;
+            }
+        };
 }

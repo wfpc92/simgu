@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -60,7 +61,7 @@ public class Rutina implements Serializable {
     @Size(max = 500)
     @Column(name = "CALENTAMIENTO")
     private String calentamiento;
-    @ManyToMany(mappedBy = "rutinaList")
+    @ManyToMany(mappedBy = "rutinaList",cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
     private List<Dia> diaList;
     @JoinColumn(name = "IDUSUARIO", referencedColumnName = "IDUSUARIO")
     @ManyToOne

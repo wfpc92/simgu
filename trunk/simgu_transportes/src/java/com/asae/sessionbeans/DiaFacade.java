@@ -7,6 +7,7 @@
 package com.asae.sessionbeans;
 
 import com.asae.entities.Dia;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +29,11 @@ public class DiaFacade extends AbstractFacade<Dia> {
     public DiaFacade() {
         super(Dia.class);
     }
+    public List<Dia> findDiaByIdRutina(int idRutina){
+        return getEntityManager().createNamedQuery("Dia.findByIdRutina").setParameter("idRutina", idRutina).getResultList();
+    }
     
+    public List<Dia> findDiasSinRutina(){                          
+        return getEntityManager().createNativeQuery("select d.ID_DIA,d.NOMBRE,d.NUM_DIA from dia d left join rutina_dia rd on d.ID_DIA = rd.ID_DIA where rd.ID_DIA is null",Dia.class).getResultList();
+    }
 }

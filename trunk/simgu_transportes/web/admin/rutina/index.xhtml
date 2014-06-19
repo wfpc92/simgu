@@ -1,0 +1,653 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns="http://www.w3.org/1999/xhtml">
+
+    <ui:define name="title">
+        
+    </ui:define>
+    <ui:define name="body">
+        <h:form id="frmGrowl">
+            <p:growl showDetail="true"/>
+        </h:form>
+
+        <p:tabView id="tabModuloRutina" effect="drop">
+
+            <p:tab title="Rutinas">
+                <h:panelGrid columns="1">  
+                    <h:form>
+                        <p:commandButton icon="ui-icon-plusthick" value="Crear nueva rutina" actionListener="#{beanGestionRutinas.crearRutina}" oncomplete="PF('dlgCrearRutina').show();"/>                       
+                    </h:form>
+                    <p:spacer height="20"/>
+                    <h:form id="frmTablaRutina">
+                        <p:dataTable var="rutina" value="#{beanGestionRutinas.lstRutinasDisponibles}"  
+                                     paginator="true" rows="10"  
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                     rowsPerPageTemplate="5,10,15">  
+                            <f:facet name="header">  
+                                Rutinas disponibles  
+                            </f:facet>  
+
+                            <p:column headerText="Nombre del usuario">                                   
+                                <h:outputText value="#{rutina.idusuario.fisrtname} #{rutina.idusuario.firstlastname}" />  
+                            </p:column>  
+
+                            <p:column headerText="Fecha de inicio">                                    
+                                <h:outputText value="#{beanGestionRutinas.getMyFormattedDate(rutina.fechaInicio)}" />   
+                            </p:column>  
+
+                            <p:column headerText="Fecha de fin">                                   
+                                <h:outputText value="#{beanGestionRutinas.getMyFormattedDate(rutina.fechaFin)}" />   
+                            </p:column>  
+
+                            <p:column>                          
+                                <p:commandButton value="Editar" actionListener="#{beanGestionRutinas.seleccionarEditarRutina(rutina)}" oncomplete="PF('dlgCrearRutina').show();"/>
+                            </p:column>  
+
+                            <p:column>                          
+                                <p:commandButton value="Copiar" actionListener="#{beanGestionRutinas.seleccionarCopiarRutina(rutina)}" oncomplete="PF('dlgCrearRutina').show();"/>
+                            </p:column>                               
+
+                            <p:column>                          
+                                <p:commandButton value="Visualizar" actionListener="#{beanGestionRutinas.verRutina(rutina)}" oncomplete="PF('dlgVerRutina').show();"/>                       
+                            </p:column> 
+
+                            <p:column>                          
+                                <p:commandButton icon="ui-icon-close" actionListener="#{beanGestionRutinas.seleccionarEliminarRutina(rutina)}">
+                                    <p:confirm header="Confirmaci&oacute;n" message="Est&aacute; seguro de eliminar la rutina?" icon="ui-icon-alert" />
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form> 
+                </h:panelGrid>                
+            </p:tab>
+
+            <p:tab title="Grupos musculares">
+                <h:form>
+                    <p:commandButton value="Crear grupo muscular" onclick="PF('dlgCrearGMuscular').show();"/>                       
+                </h:form>
+                <p:spacer height="20"/>
+                <h:form id="frmTblGMuscular">
+                    <p:dataTable var="gMuscularTbl" value="#{beanGestionRutinas.lstGruposMusculares}"  
+                                 paginator="true" rows="10"  
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                 rowsPerPageTemplate="5,10,15">
+                        <f:facet name="header">  
+                            Grupos musculares disponibles  
+                        </f:facet>  
+
+                        <p:column headerText="Nombre">                          
+                            <h:outputText value="#{gMuscularTbl.nombre}" />  
+                        </p:column> 
+
+                        <p:column headerText="Descripci&oacute;n">                          
+                            <h:outputText value="#{gMuscularTbl.descripcion}" />  
+                        </p:column> 
+
+                        <p:column>                          
+                            <p:commandButton value="Editar" actionListener="#{beanGestionRutinas.seleccionarEditarGrupoMuscular(gMuscularTbl)}" oncomplete="PF('dlgEditarGMuscular').show();"/> 
+                        </p:column>
+
+                        <p:column>                          
+                            <p:commandButton icon="ui-icon-close" actionListener="#{beanGestionRutinas.eliminarGrupoMuscular(gMuscularTbl)}">
+                                <p:confirm header="Confirmaci&oacute;n" message="Est&aacute; seguro de eliminar el grupo muscular?" icon="ui-icon-alert" />
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable> 
+                </h:form>
+            </p:tab>
+
+            <p:tab title="Grupos cross">
+                <h:form>
+                    <p:commandButton value="Crear grupo cross" onclick="PF('dlgCrearGCross').show();"/>                       
+                </h:form>
+                <p:spacer height="20"/>
+                <h:form id="frmTablaGrupoCross">
+                    <p:dataTable var="gCrossTbl" value="#{beanGestionRutinas.lstGrupoCross}"  
+                                 paginator="true" rows="10"  
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                 rowsPerPageTemplate="5,10,15">                     
+
+                        <f:facet name="header">  
+                            Grupos cross disponibles  
+                        </f:facet>  
+
+                        <p:column headerText="Nombre">                          
+                            <h:outputText value="#{gCrossTbl.nombre}" />  
+                        </p:column> 
+
+                        <p:column headerText="Descripci&oacute;n">                          
+                            <h:outputText value="#{gCrossTbl.descripcion}" />  
+                        </p:column> 
+
+                        <p:column>                          
+                            <p:commandButton value="Editar" actionListener="#{beanGestionRutinas.seleccionarEditarGrupoCross(gCrossTbl)}" oncomplete="PF('dlgEditarGCross').show();"/> 
+                        </p:column>
+
+                        <p:column>                                                      
+                            <p:commandButton icon="ui-icon-close" actionListener="#{beanGestionRutinas.eliminarGrupoCross(gCrossTbl)}">
+                                <p:confirm header="Confirmaci&oacute;n" message="Est&aacute; seguro de eliminar el grupo cross?" icon="ui-icon-alert" />
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable> 
+                </h:form>
+            </p:tab>
+
+            <p:tab title="Ejercicios">
+                <h:form>
+                    <p:commandButton value="Crear ejercicio" onclick="PF('dlgCrearEjercicio').show();"/>                       
+                </h:form>
+                <p:spacer height="20"/>
+                <h:form id="frmTablaEjercicios">
+                    <p:dataTable var="ejercicioTbl" value="#{beanGestionRutinas.lstEjercicios}"  
+                                 paginator="true" rows="10"  
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                 rowsPerPageTemplate="5,10,15">                     
+
+                        <f:facet name="header">  
+                            Ejercicios disponibles  
+                        </f:facet>  
+
+                        <p:column headerText="Nombre">                          
+                            <h:outputText value="#{ejercicioTbl.nombre}" />  
+                        </p:column> 
+
+                        <p:column headerText="Descripci&oacute;n">                          
+                            <h:outputText value="#{ejercicioTbl.descripcion}" />  
+                        </p:column>                                                
+
+                        <p:column>                          
+                            <p:commandButton value="Editar" actionListener="#{beanGestionRutinas.seleccionarEditarEjercicio(ejercicioTbl)}" oncomplete="PF('dlgEditarEjercicio').show();"/> 
+                        </p:column>
+
+                        <p:column>                                                       
+                            <p:commandButton icon="ui-icon-close" actionListener="#{beanGestionRutinas.eliminarEjercicio(ejercicioTbl)}">
+                                <p:confirm header="Confirmaci&oacute;n" message="Est&aacute; seguro de eliminar el ejercicio?" icon="ui-icon-alert" />
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable> 
+                </h:form>
+            </p:tab>
+
+            <p:tab title="Medidas">
+                <h:form>
+                    <p:commandButton value="Crear medida" onclick="PF('dlgCrearMedida').show();"/>                       
+                </h:form>
+                <p:spacer height="20"/>
+                <h:form id="frmTablaMedidas">
+                    <p:dataTable var="medidaTbl" value="#{beanGestionRutinas.lstMedidasEjercicioCross}"  
+                                 paginator="true" rows="10"  
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                 rowsPerPageTemplate="5,10,15">                     
+
+                        <f:facet name="header">  
+                            Medidas disponibles  
+                        </f:facet>  
+
+                        <p:column headerText="Nombre">                          
+                            <h:outputText value="#{medidaTbl.nombre}" />  
+                        </p:column> 
+
+                        <p:column headerText="Descripci&oacute;n">                          
+                            <h:outputText value="#{medidaTbl.descripcion}" />  
+                        </p:column>                                                
+
+                        <p:column>                          
+                            <p:commandButton value="Editar" actionListener="#{beanGestionRutinas.seleccionarEditarMedida(medidaTbl)}" oncomplete="PF('dlgEditarMedida').show();"/> 
+                        </p:column>
+
+                        <p:column>                                                       
+                            <p:commandButton icon="ui-icon-close" actionListener="#{beanGestionRutinas.eliminarMedida(medidaTbl)}">
+                                <p:confirm header="Confirmaci&oacute;n" message="Est&aacute; seguro de eliminar la medida?" icon="ui-icon-alert" />
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable> 
+                </h:form>
+            </p:tab>
+
+        </p:tabView>
+
+        <p:dialog header="Crear medida" widgetVar="dlgCrearMedida" modal="true">
+            <p:panel>
+                <h:form id="frmRegistrarMedida">
+                    <h:panelGrid columns="3">
+                        <p:outputLabel value="Nombre:"/><p:inputText id="txtNombreMedida" value="#{beanGestionRutinas.medidaRegistrarDlg.nombre}" required="true" requiredMessage="El nombre es obligatorio"/>
+                        <p:message for="txtNombreMedida"/>
+                        <p:spacer height="20"/><p:spacer height="20"/><p:spacer height="20"/>
+                        <p:outputLabel value="Descripci&oacute;n:"/><p:inputTextarea id="txtDescMedida" value="#{beanGestionRutinas.medidaRegistrarDlg.descripcion}" required="true" requiredMessage="La descripci&oacute;n es obligatoria"/>
+                        <p:message for="txtDescMedida"/>
+                    </h:panelGrid>
+                    <h:panelGrid>
+                        <p:commandButton value="Crear" actionListener="#{beanGestionRutinas.registrarMedidaDlg}" oncomplete="if (!args.validationFailed &amp;&amp; args.saved) dlgCrearMedida.hide()" update="frmRegistrarMedida"/>
+                    </h:panelGrid>
+                </h:form>
+            </p:panel>
+        </p:dialog>
+
+        <p:dialog header="Editar medida" widgetVar="dlgEditarMedida" modal="true">
+            <p:panel>
+                <h:form id="frmEditarMedida">
+                    <h:panelGrid columns="3">
+                        <p:outputLabel value="Nombre:"/><p:inputText id="txtNombreMedida" value="#{beanGestionRutinas.medidaEditarDlg.nombre}" required="true" requiredMessage="El nombre es obligatorio"/>
+                        <p:message for="txtNombreMedida"/>
+                        <p:spacer height="20"/><p:spacer height="20"/><p:spacer height="20"/>
+                        <p:outputLabel value="Descripci&oacute;n:"/><p:inputTextarea id="txtDescMedida" value="#{beanGestionRutinas.medidaEditarDlg.descripcion}" required="true" requiredMessage="La descripci&oacute;n es obligatoria"/>
+                        <p:message for="txtDescMedida"/>
+                    </h:panelGrid>
+                    <h:panelGrid>
+                        <p:commandButton value="Editar" actionListener="#{beanGestionRutinas.editarMedidaDlg}" oncomplete="if (!args.validationFailed &amp;&amp; args.edited) dlgEditarMedida.hide()" update="frmEditarMedida"/>
+                    </h:panelGrid>
+                </h:form>
+            </p:panel>
+        </p:dialog>
+
+        <p:dialog header="Crear ejercicio" widgetVar="dlgCrearEjercicio" modal="true">
+            <p:panel>
+                <h:form id="frmRegistrarEjercicio">
+                    <h:panelGrid columns="3">
+                        <p:outputLabel value="Nombre:"/><p:inputText id="txtNombreEjercicio" value="#{beanGestionRutinas.ejercicioRegistrarDlg.nombre}" required="true" requiredMessage="El nombre es obligatorio"/>
+                        <p:message for="txtNombreEjercicio"/>
+                        <p:spacer height="20"/><p:spacer height="20"/><p:spacer height="20"/>
+                        <p:outputLabel value="Descripci&oacute;n:"/><p:inputTextarea id="txtDescEjercicio" value="#{beanGestionRutinas.ejercicioRegistrarDlg.descripcion}" required="true" requiredMessage="La descripci&oacute;n es obligatoria"/>
+                        <p:message for="txtDescEjercicio"/>
+                    </h:panelGrid>
+                    <h:panelGrid>
+                        <p:commandButton value="Crear" actionListener="#{beanGestionRutinas.registrarEjercicioDlg}" oncomplete="if (!args.validationFailed &amp;&amp; args.saved) dlgCrearEjercicio.hide()" update="frmRegistrarEjercicio"/>
+                    </h:panelGrid>
+                </h:form>
+            </p:panel>
+        </p:dialog> 
+
+        <p:dialog header="Editar ejercicio" widgetVar="dlgEditarEjercicio" modal="true">
+            <p:panel>
+                <h:form id="frmEditarEjercicio">
+                    <h:panelGrid columns="3">
+                        <p:outputLabel value="Nombre:"/><p:inputText id="txtNombreEjercicio" value="#{beanGestionRutinas.ejercicioEditarDlg.nombre}" required="true" requiredMessage="El nombre es obligatorio"/>
+                        <p:message for="txtNombreEjercicio"/>
+                        <p:spacer height="20"/><p:spacer height="20"/><p:spacer height="20"/>
+                        <p:outputLabel value="Descripci&oacute;n:"/><p:inputTextarea id="txtDescEjercicio" value="#{beanGestionRutinas.ejercicioEditarDlg.descripcion}" required="true" requiredMessage="La descripci&oacute;n es obligatoria"/>
+                        <p:message for="txtDescEjercicio"/>
+                    </h:panelGrid>
+                    <h:panelGrid>
+                        <p:commandButton value="Editar" actionListener="#{beanGestionRutinas.editarEjercicio}" oncomplete="if (!args.validationFailed &amp;&amp; args.edited) dlgEditarEjercicio.hide()" update="frmEditarEjercicio"/>
+                    </h:panelGrid>
+                </h:form>
+            </p:panel>
+        </p:dialog> 
+
+        <p:dialog header="Crear grupo muscular" widgetVar="dlgCrearGMuscular" modal="true">
+            <p:panel>
+                <h:form id="frmRegistrarGMuscular">
+                    <h:panelGrid columns="3">
+                        <p:outputLabel value="Nombre:"/><p:inputText id="txtNombreGMuscular" value="#{beanGestionRutinas.grupoMuscularRegistrarDlg.nombre}" required="true" requiredMessage="El nombre es obligatorio"/>
+                        <p:message for="txtNombreGMuscular"/>
+                        <p:spacer height="20"/><p:spacer height="20"/><p:spacer height="20"/>
+                        <p:outputLabel value="Descripci&oacute;n:"/><p:inputTextarea id="txtDescGMuscular" value="#{beanGestionRutinas.grupoMuscularRegistrarDlg.descripcion}" required="true" requiredMessage="La descripci&oacute;n es obligatoria"/>
+                        <p:message for="txtDescGMuscular"/>
+                    </h:panelGrid>
+                    <h:panelGrid>
+                        <p:commandButton value="Crear" actionListener="#{beanGestionRutinas.registrarGMuscular}" oncomplete="if (!args.validationFailed &amp;&amp; args.saved) dlgCrearGMuscular.hide()" update="frmRegistrarGMuscular"/>
+                    </h:panelGrid>
+                </h:form>
+            </p:panel>
+        </p:dialog>    
+
+        <p:dialog header="Crear grupo cross" widgetVar="dlgCrearGCross" modal="true">
+            <p:panel>
+                <h:form id="frmRegistrarGCross">
+                    <h:panelGrid columns="3">
+                        <p:outputLabel value="Nombre:"/><p:inputText id="txtNombreGCross" value="#{beanGestionRutinas.gruposCrossGeneralRegistrar.nombre}" required="true" requiredMessage="El nombre es obligatorio"/>
+                        <p:message for="txtNombreGCross"/>
+                        <p:spacer height="20"/><p:spacer height="20"/><p:spacer height="20"/>
+                        <p:outputLabel value="Descripci&oacute;n:"/><p:inputTextarea id="txtDescGCross" value="#{beanGestionRutinas.gruposCrossGeneralRegistrar.descripcion}" required="true" requiredMessage="La descripci&oacute;n es obligatoria"/>
+                        <p:message for="txtDescGCross"/>
+                    </h:panelGrid>
+                    <h:panelGrid>
+                        <p:commandButton value="Crear" actionListener="#{beanGestionRutinas.registrarGCross}" oncomplete="if (!args.validationFailed &amp;&amp; args.saved) dlgCrearGCross.hide()" update="frmRegistrarGCross"/>
+                    </h:panelGrid>
+                </h:form>
+            </p:panel>
+        </p:dialog>
+
+        <p:dialog header="Editar grupo muscular" widgetVar="dlgEditarGMuscular" modal="true">
+            <p:panel>
+                <h:form id="frmEditarGMuscular">
+                    <h:panelGrid columns="3">
+                        <p:outputLabel value="Nombre:"/><p:inputText id="txtNombreGMuscular" value="#{beanGestionRutinas.grupoMuscularEditarDlg.nombre}" required="true" requiredMessage="El nombre es obligatorio"/>
+                        <p:message for="txtNombreGMuscular"/>
+                        <p:spacer height="20"/><p:spacer height="20"/><p:spacer height="20"/>
+                        <p:outputLabel value="Descripci&oacute;n:"/><p:inputTextarea id="txtDescGMuscular" value="#{beanGestionRutinas.grupoMuscularEditarDlg.descripcion}" required="true" requiredMessage="La descripci&oacute;n es obligatoria"/>
+                        <p:message for="txtDescGMuscular"/>
+                    </h:panelGrid>
+                    <h:panelGrid>
+                        <p:commandButton value="Editar" actionListener="#{beanGestionRutinas.editarGMuscular}" oncomplete="if (!args.validationFailed &amp;&amp; args.edited) dlgEditarGMuscular.hide()" update="frmEditarGMuscular"/>
+                    </h:panelGrid>
+                </h:form>
+            </p:panel>
+        </p:dialog> 
+
+        <p:dialog header="Editar grupo cross" widgetVar="dlgEditarGCross" modal="true">
+            <p:panel>
+                <h:form id="frmEditarGCross">
+                    <h:panelGrid columns="3">
+                        <p:outputLabel value="Nombre:"/><p:inputText id="txtNombreGCross" value="#{beanGestionRutinas.gruposCrossGeneralEditar.nombre}" required="true" requiredMessage="El nombre es obligatorio"/>
+                        <p:message for="txtNombreGCross"/>
+                        <p:spacer height="20"/><p:spacer height="20"/><p:spacer height="20"/>
+                        <p:outputLabel value="Descripci&oacute;n:"/><p:inputTextarea id="txtDescGCross" value="#{beanGestionRutinas.gruposCrossGeneralEditar.descripcion}" required="true" requiredMessage="La descripci&oacute;n es obligatoria"/>
+                        <p:message for="txtDescGCross"/>
+                    </h:panelGrid>
+                    <h:panelGrid>
+                        <p:commandButton value="Editar" actionListener="#{beanGestionRutinas.editarGCross}" oncomplete="if (!args.validationFailed &amp;&amp; args.edited) dlgEditarGCross.hide()" update="frmEditarGCross"/>
+                    </h:panelGrid>
+                </h:form>
+            </p:panel>
+        </p:dialog> 
+
+        <p:dialog header="Crear nueva rutina" widgetVar="dlgCrearRutina" modal="true">              
+            <p:panel>
+                <h:form id="frmDatosRutina">
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="(*) Nombre:"/>
+                        <p:autoComplete value="#{beanGestionRutinas.usuRutinaRegistrar}" completeMethod="#{beanGestionRutinas.completeUsuarioRegistrados}"
+                                        var="usu" itemLabel="#{usu.fisrtname}" itemValue="#{usu}" converter="usuarioConverter" forceSelection="true">
+                            <p:ajax event="itemSelect" update="pnlGrdMedidasUsuario" />
+                        </p:autoComplete>
+                    </h:panelGrid>
+                    <p:spacer height="20"/>
+                    <h:panelGrid columns="4">
+                        <p:outputLabel value="(*) Fecha de inicio:"/><p:calendar value="#{beanGestionRutinas.fechaInicioRutina}" required="true" requiredMessage="La fecha de inicio es obligatoria"/>
+                        <p:outputLabel value="(*) Fecha de fin:"/><p:calendar value="#{beanGestionRutinas.fechaFinRutina}" required="true" requiredMessage="La fecha de fin es obligatoria"/>
+                    </h:panelGrid>
+                    <p:spacer height="20"/>
+                    <h:panelGrid id="pnlGrdMedidasUsuario" columns="8">
+                        <p:outputLabel value="Peso: 0 kg"/>
+                        <p:spacer width="50"/>
+                        <p:outputLabel value="Talla: 0 cm"/>
+                        <p:spacer width="50"/>
+                        <p:outputLabel value="I.M.C: 0 %"/>
+                        <p:spacer width="50"/>
+                        <p:outputLabel value="(*) Rutina:"/><p:inputText value="#{beanGestionRutinas.rutinaRegistrar.codigoRutina}" required="true" requiredMessage="El n&uacute;mero de rutina es obligatorio"/>
+                    </h:panelGrid>
+                    <h:panelGrid>
+                        <p:commandButton value="Agregar d&iacute;a" actionListener="#{beanGestionRutinas.agregarDiaARutina}" update="frmDatosRutina:tblDias"/>                       
+                    </h:panelGrid>                                          
+                    <p:spacer height="20"/>
+                    <h:panelGrid>
+                        <p:dataTable id="tblDias" var="dia" value="#{beanGestionRutinas.lstDiasRutina}">  
+                            <p:column headerText="Dia">  
+                                <h:outputText value="#{dia.numDia}" />  
+                            </p:column>  
+
+                            <p:column>  
+                                <p:commandButton value="Agregar grupo muscular"  actionListener="#{beanGestionRutinas.seleccionarDia(dia)}" oncomplete="PF('dlgAgregarGrupoMuscular').show();"/>                       
+                            </p:column> 
+
+                            <p:column>  
+                                <p:commandButton value="Agregar grupo cross"  actionListener="#{beanGestionRutinas.seleccionarDiaCross(dia)}" oncomplete="PF('dlgAgregarGrupoCross').show();"/>                       
+                            </p:column>
+
+                            <p:column>  
+                                <p:commandButton icon="ui-icon-close" actionListener="#{beanGestionRutinas.eliminarDiaRutina(dia)}">
+                                    <p:confirm header="Confirmaci&oacute;n" message="Est&aacute; seguro de eliminar el d&iacute;a?" icon="ui-icon-alert" />
+                                </p:commandButton>                       
+                            </p:column>
+                        </p:dataTable>
+                    </h:panelGrid>
+                    <p:spacer height="20"/>
+                    <h:panelGrid columns="3">                                                
+                        <p:commandButton value="Guardar rutina" actionListener="#{beanGestionRutinas.agregarRutina}" oncomplete="if (!args.validationFailed) dlgCrearRutina.hide()" update="frmDatosRutina,:frmGrowl"/>
+                    </h:panelGrid>                    
+                </h:form>
+            </p:panel> 
+        </p:dialog>  
+
+        <h:form>
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+            </p:confirmDialog>
+        </h:form>
+
+        <h:form id="frmVerRutina">  
+            <p:dialog id="dlgVerRutina" header="Ver rutina" widgetVar="dlgVerRutina" modal="true" position="top" resizable="false">                            
+                <c:if test="#{beanGestionRutinas.pdfFileName != 'sin-cargar'}">
+                    <object type="application/pdf" data="#{request.contextPath}/admin/rutina/reports/#{beanGestionRutinas.pdfFileName}" height="600px" width="820px">
+                        Your browser can't display pdf, <a href="#{request.contextPath}/admin/rutina/reports/#{beanGestionRutinas.pdfFileName}">click</a> to download pdf instead.
+                    </object>   
+                </c:if>
+            </p:dialog>        
+        </h:form>
+
+        <p:dialog header="Agregar grupo muscular" widgetVar="dlgAgregarGrupoMuscular" modal="true">
+            <p:panel>
+                <h:form id="frmDatosDia">
+                    <h:panelGrid columns="4">
+                        <p:outputLabel value="#{beanGestionRutinas.diaSeleccionado.nombre}"/>
+                        <p:spacer width="50"/>
+                        <p:outputLabel value="Grupos musculares:"/>                                                 
+                        <p:selectOneMenu value="#{beanGestionRutinas.idGrupoMuscRegistrar}" binding="#{beanGestionRutinas.selGrupoGm}">
+                            <f:selectItem itemValue="-1" itemLabel="Seleccione una opci&oacute;n"/>
+                            <f:selectItems value="#{beanGestionRutinas.lstGruposMusculares}" var="gMuscular" itemValue="#{gMuscular.idgrupoMuscularGeneral}" itemLabel="#{gMuscular.nombre}"/>
+                            <p:ajax listener="#{beanGestionRutinas.agregarGrupoMuscular}"  rendered="@this"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                </h:form>
+                <p:spacer height="20"/>
+                <h:form id="frmGruposMusculares">
+                    <p:dataTable var="grupoMuscular" value="#{beanGestionRutinas.lstGruposMuscularesDia}">  
+                        <p:column headerText="Grupo muscular">  
+                            <h:outputText value="#{grupoMuscular.idgrupoMuscularGeneral.nombre}" />  
+                        </p:column>  
+
+                        <p:column>  
+                            <p:commandButton value="Agregar ejercicio" actionListener="#{beanGestionRutinas.seleccionarGrupoMuscular(grupoMuscular)}" oncomplete="PF('dlgAgregarEjercicio').show();"/>                       
+                        </p:column>  
+
+                        <p:column>  
+                            <p:commandButton icon="ui-icon-close" actionListener="#{beanGestionRutinas.eliminarGMuscular(grupoMuscular)}">
+                                <p:confirm header="Confirmaci&oacute;n" message="Est&aacute; seguro de eliminar el grupo muscular?" icon="ui-icon-alert" />
+                            </p:commandButton>                       
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+                <p:spacer height="20"/>
+                <h:form>
+                    <h:panelGrid>
+                        <p:commandButton value="Aceptar" oncomplete="PF('dlgAgregarGrupoMuscular').hide();"/>
+                    </h:panelGrid>
+                </h:form>
+            </p:panel>
+        </p:dialog>
+
+        <p:dialog header="Agregar grupo cross" widgetVar="dlgAgregarGrupoCross" modal="true">
+            <p:panel>
+                <h:form id="frmDatosDiaCross">
+                    <h:panelGrid columns="4">
+                        <p:outputLabel value="#{beanGestionRutinas.diaSeleccionado.nombre}"/>
+                        <p:spacer width="50"/>
+                        <p:outputLabel value="Grupos cross:"/>                         
+                        <p:selectOneMenu value="#{beanGestionRutinas.idGrupoCrossRegistrar}" binding="#{beanGestionRutinas.selGrupoCross}">
+                            <f:selectItem itemValue="-1" itemLabel="Seleccione una opci&oacute;n"/>
+                            <f:selectItems value="#{beanGestionRutinas.lstGrupoCross}" var="gCross" itemValue="#{gCross.idgrupoCrossGeneral}" itemLabel="#{gCross.nombre}" />
+                            <p:ajax listener="#{beanGestionRutinas.agregarGrupoCross}"  rendered="@this"/>
+                        </p:selectOneMenu>                        
+                    </h:panelGrid>
+                </h:form>
+                <p:spacer height="20"/>
+                <h:form id="frmGruposCross">
+                    <p:dataTable var="grupoCross" value="#{beanGestionRutinas.lstGruposCrossDia}">  
+                        <p:column headerText="Grupo cross">  
+                            <h:outputText value="#{grupoCross.idgrupoCrossGeneral.nombre}" />  
+                        </p:column>  
+
+                        <p:column>  
+                            <p:commandButton value="Agregar ejercicio" actionListener="#{beanGestionRutinas.seleccionarGrupoCross(grupoCross)}" oncomplete="PF('dlgAgregarEjercicioCross').show();"/>                       
+                        </p:column>
+
+                        <p:column>  
+                            <p:commandButton icon="ui-icon-close" actionListener="#{beanGestionRutinas.eliminarGCross(grupoCross)}">
+                                <p:confirm header="Confirmaci&oacute;n" message="Est&aacute; seguro de eliminar el grupo cross?" icon="ui-icon-alert" />
+                            </p:commandButton>                       
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+                <p:spacer height="20"/>
+                <h:form>
+                    <h:panelGrid>
+                        <p:commandButton value="Aceptar" oncomplete="PF('dlgAgregarGrupoCross').hide();"/>
+                    </h:panelGrid>
+                </h:form>
+            </p:panel>
+        </p:dialog>
+
+        <p:dialog header="Agregar ejercicio" widgetVar="dlgAgregarEjercicio" modal="true">
+            <p:panel style="float: left">
+                <h:panelGrid>
+                    <h:form id="frmDatosEjercicio">
+                        <h:panelGrid columns="1">
+                            <p:outputLabel value="Informaci&oacute;n del ejercicio"/>                            
+                            <p:spacer height="20"/>
+                        </h:panelGrid>                            
+                        <h:panelGrid columns="2">                                                        
+                            <p:outputLabel value="Ejercicio:"/>                                                        
+                            <p:selectOneMenu id="selectEjercicioGm" value="#{beanGestionRutinas.idEjercicioRegistrarGm}" required="true" requiredMessage="Debe seleccionar un ejercicio" binding="#{beanGestionRutinas.selEjerGm}">
+                                <f:selectItem itemValue="" itemLabel="Seleccione una opci&oacute;n"/>
+                                <f:selectItems value="#{beanGestionRutinas.lstEjercicios}" var="ejercicioSelect" itemValue="#{ejercicioSelect.idEjercicio}" itemLabel="#{ejercicioSelect.nombre}" />
+                                <p:ajax listener="#{beanGestionRutinas.seleccionarEjercicio}"  rendered="@this"/>
+                            </p:selectOneMenu>  
+                            <p:spacer height="10"/><p:spacer height="10"/>
+                            <p:spacer/><p:message id="msgSelectEjercicioGm" for="selectEjercicioGm"/>
+                            <p:spacer height="20"/><p:spacer height="20"/>
+                            <p:outputLabel value="(*) Series:"/><p:spinner value="#{beanGestionRutinas.ejercicioGmRegistrar.numeroSeries}" min="1" suffix=" serie(s)" required="true" requiredMessage="Las series son obligatorias"/><p:spacer height="20"/><p:spacer height="20"/> 
+                            <p:outputLabel value="(*) Repeticiones:"/><p:spinner value="#{beanGestionRutinas.ejercicioGmRegistrar.repeticiones}" min="1" suffix=" rep(s)" required="true" requiredMessage="Las repeticiones son obligatorias"/><p:spacer height="20"/><p:spacer height="20"/> 
+                            <p:outputLabel value="(*) Receso:"/><p:spinner value="#{beanGestionRutinas.ejercicioGmRegistrar.receso}" min="1" suffix=" seg" required="true" requiredMessage="El receso es obligatorio"/><p:spacer height="20"/><p:spacer height="20"/> 
+                            <p:outputLabel value="Peso:"/><p:spinner value="#{beanGestionRutinas.ejercicioGmRegistrar.peso}" min="1" suffix=" kg"/>
+                        </h:panelGrid>                        
+                        <p:spacer height="20"/>
+                        <h:panelGrid>
+                            <p:commandButton value="Registrar ejercicio" actionListener="#{beanGestionRutinas.agregarEjercicio}" update="frmDatosEjercicio,:frmGrowl"/>
+                        </h:panelGrid>
+                    </h:form>
+                </h:panelGrid>
+            </p:panel> 
+            <p:panel style="float: right; border-style: hidden">                                            
+                <h:form id="frmDatosDiaGMuscular">
+                    <h:panelGrid columns="5">
+                        <p:outputLabel value="#{beanGestionRutinas.diaSeleccionado.nombre}"/><p:spacer width="30"/>
+                        <p:outputLabel value="Grupo muscular: #{beanGestionRutinas.grupoMuscSeleccionado.idgrupoMuscularGeneral.nombre}"/><p:spacer width="30"/>                        
+                    </h:panelGrid>
+                </h:form>                
+                <h:form id="frmEjercicios">
+                    <p:dataTable var="ejercicioTbl" value="#{beanGestionRutinas.lstEjerciciosGMuscular}">  
+                        <p:column headerText="Ejercicio">  
+                            <h:outputText value="#{ejercicioTbl.ejercicio.nombre}" />  
+                        </p:column>  
+
+                        <p:column headerText="Series">  
+                            <h:outputText value="#{ejercicioTbl.numeroSeries}" />  
+                        </p:column>        
+
+                        <p:column headerText="Repeticiones">  
+                            <h:outputText value="#{ejercicioTbl.repeticiones}" />  
+                        </p:column>     
+
+                        <p:column headerText="Receso (seg)">  
+                            <h:outputText value="#{ejercicioTbl.receso}" />  
+                        </p:column>       
+
+                        <p:column headerText="Peso (kg)">  
+                            <h:outputText value="#{ejercicioTbl.peso}" />  
+                        </p:column>  
+
+                        <p:column>
+                            <p:commandButton icon="ui-icon-close" actionListener="#{beanGestionRutinas.eliminarEjercicioGMuscular(ejercicioTbl)}">
+                                <p:confirm header="Confirmaci&oacute;n" message="Est&aacute; seguro de eliminar el ejercicio?" icon="ui-icon-alert" />
+                            </p:commandButton> 
+                        </p:column>
+                    </p:dataTable>
+                    <p:spacer height="20"/>
+                    <h:panelGrid>
+                        <p:commandButton value="Aceptar" oncomplete="PF('dlgAgregarEjercicio').hide();"/>
+                    </h:panelGrid>
+                </h:form>
+            </p:panel>                            
+        </p:dialog> 
+
+        <p:dialog header="Agregar ejercicio" widgetVar="dlgAgregarEjercicioCross" modal="true">
+            <p:panel style="float: left">
+                <h:panelGrid>
+                    <h:form id="frmDatosEjercicioCross">
+                        <h:panelGrid columns="1">
+                            <p:outputLabel value="Informaci&oacute;n del ejercicio"/>                            
+                            <p:spacer height="20"/>
+                        </h:panelGrid>                            
+                        <h:panelGrid columns="2">                                                        
+                            <p:outputLabel value="Ejercicio:"/>
+                            <p:selectOneMenu id="selectEjercicioCross" value="#{beanGestionRutinas.idEjercicioRegistrarCross}" required="true" requiredMessage="Debe seleccionar un ejercicio" binding="#{beanGestionRutinas.selEjerCross}">
+                                <f:selectItem itemValue="" itemLabel="Seleccione una opci&oacute;n"/>
+                                <f:selectItems value="#{beanGestionRutinas.lstEjercicios}" var="ejercicioSelect" itemValue="#{ejercicioSelect.idEjercicio}" itemLabel="#{ejercicioSelect.nombre}" />
+                                <p:ajax listener="#{beanGestionRutinas.seleccionarEjercicioCross}"  rendered="@this"/>
+                            </p:selectOneMenu>        
+                            <p:spacer height="10"/><p:spacer height="10"/>
+                            <p:spacer/><p:message id="msgSelectEjercicioCross" for="selectEjercicioCross"/>
+                            <p:spacer height="20"/><p:spacer height="20"/>
+                            <p:outputLabel value="Medida:"/>
+                            <p:selectOneMenu id="selectMedidasEjerCross" value="#{beanGestionRutinas.idMedidaEjercicioCross}" required="true" requiredMessage="Debe seleccionar una medida" binding="#{beanGestionRutinas.selMedidaEjerCross}">
+                                <f:selectItem itemValue="" itemLabel="Seleccione una opci&oacute;n"/>
+                                <f:selectItems value="#{beanGestionRutinas.lstMedidasEjercicioCross}" var="medidaSelect" itemValue="#{medidaSelect.idmedidaEjercicioCross}" itemLabel="#{medidaSelect.nombre}"/>
+                                <p:ajax listener="#{beanGestionRutinas.seleccionarMedidaEjerCross}"  rendered="@this"/>
+                            </p:selectOneMenu>                            
+                            <p:spacer height="10"/><p:spacer height="10"/>
+                            <p:spacer/><p:message id="msgSelectMedidasEjerCross" for="selectMedidasEjerCross"/>
+                            <p:spacer height="20"/><p:spacer height="20"/>
+                            <p:outputLabel value="(*) Valor medida:"/><p:inputText value="#{beanGestionRutinas.ejercicioCrossRegistrar.numVecesMedida}" required="true" requiredMessage="El valor de la medida es obligatoria"/>
+                        </h:panelGrid>                        
+                        <p:spacer height="20"/>
+                        <h:panelGrid>
+                            <p:commandButton value="Registrar ejercicio" actionListener="#{beanGestionRutinas.agregarEjercicioCross}" update="frmDatosEjercicioCross,:frmGrowl"/>
+                        </h:panelGrid>
+                    </h:form>
+                </h:panelGrid>
+            </p:panel> 
+            <p:panel style="float: right; border-style: hidden">                                            
+                <h:form id="frmDatosDiaGCross">
+                    <h:panelGrid columns="5">
+                        <p:outputLabel value="#{beanGestionRutinas.diaSeleccionado.nombre}"/><p:spacer width="30"/>
+                        <p:outputLabel value="Grupo muscular: #{beanGestionRutinas.grupoCrossSeleccionado.idgrupoCrossGeneral.nombre}"/><p:spacer width="30"/>                        
+                    </h:panelGrid>
+                </h:form>                
+                <h:form id="frmEjerciciosCross">
+                    <p:dataTable var="ejercicioCrossTbl" value="#{beanGestionRutinas.lstEjerciciosGCross}">  
+                        <p:column headerText="Ejercicio">  
+                            <h:outputText value="#{ejercicioCrossTbl.ejercicio.nombre}" />  
+                        </p:column>  
+
+                        <p:column headerText="Medida">  
+                            <h:outputText value="#{ejercicioCrossTbl.idmedidaEjercicioCross.nombre}" />  
+                        </p:column>        
+
+                        <p:column headerText="N&uacute;mero de veces">  
+                            <h:outputText value="#{ejercicioCrossTbl.numVecesMedida}" />  
+                        </p:column>
+
+                        <p:column>
+                            <p:commandButton icon="ui-icon-close" actionListener="#{beanGestionRutinas.eliminarEjercicioGCross(ejercicioCrossTbl)}">
+                                <p:confirm header="Confirmaci&oacute;n" message="Est&aacute; seguro de eliminar el ejercicio?" icon="ui-icon-alert" />
+                            </p:commandButton> 
+                        </p:column>
+                    </p:dataTable>
+                    <p:spacer height="20"/>
+                    <h:panelGrid>
+                        <p:commandButton value="Aceptar" oncomplete="PF('dlgAgregarEjercicioCross').hide();"/>
+                    </h:panelGrid>
+                </h:form>
+            </p:panel>
+        </p:dialog>
+    </ui:define>
+
+</ui:composition>

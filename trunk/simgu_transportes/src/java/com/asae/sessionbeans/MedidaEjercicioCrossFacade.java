@@ -9,7 +9,9 @@ package com.asae.sessionbeans;
 import com.asae.entities.MedidaEjercicioCross;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +30,14 @@ public class MedidaEjercicioCrossFacade extends AbstractFacade<MedidaEjercicioCr
     public MedidaEjercicioCrossFacade() {
         super(MedidaEjercicioCross.class);
     }
-    
+    public MedidaEjercicioCross findMedidaEjercicioCrossByName(String name) {
+        try {
+            Query query = em.createNamedQuery("MedidaEjercicioCross.findByNombre");
+            query.setParameter("nombre", name);
+            query.setMaxResults(1);
+            return (MedidaEjercicioCross) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
 }
