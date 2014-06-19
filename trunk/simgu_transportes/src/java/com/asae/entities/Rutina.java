@@ -17,6 +17,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -61,7 +62,10 @@ public class Rutina implements Serializable {
     @Size(max = 500)
     @Column(name = "CALENTAMIENTO")
     private String calentamiento;
-    @ManyToMany(mappedBy = "rutinaList",cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
+    @JoinTable(name = "rutina_dia", joinColumns = {
+        @JoinColumn(name = "ID_RUTINA", referencedColumnName = "ID_RUTINA")}, inverseJoinColumns = {
+        @JoinColumn(name = "ID_DIA", referencedColumnName = "ID_DIA")})
+    @ManyToMany(cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
     private List<Dia> diaList;
     @JoinColumn(name = "IDUSUARIO", referencedColumnName = "IDUSUARIO")
     @ManyToOne

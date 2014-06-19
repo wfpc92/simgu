@@ -365,11 +365,11 @@
                     </h:panelGrid>
                     <p:spacer height="20"/>
                     <h:panelGrid id="pnlGrdMedidasUsuario" columns="8">
-                        <p:outputLabel value="Peso: 0 kg"/>
+                        <p:outputLabel value="Peso: #{beanGestionRutinas.obtenerPeso(beanGestionRutinas.usuRutinaRegistrar)} kg"/>
                         <p:spacer width="50"/>
-                        <p:outputLabel value="Talla: 0 cm"/>
+                        <p:outputLabel value="Talla: #{beanGestionRutinas.obtenerEstatura(beanGestionRutinas.usuRutinaRegistrar)} cm"/>
                         <p:spacer width="50"/>
-                        <p:outputLabel value="I.M.C: 0 %"/>
+                        <p:outputLabel value="I.M.C: #{beanGestionRutinas.obtenerImc(beanGestionRutinas.usuRutinaRegistrar)}  %"/>
                         <p:spacer width="50"/>
                         <p:outputLabel value="(*) Rutina:"/><p:inputText value="#{beanGestionRutinas.rutinaRegistrar.codigoRutina}" required="true" requiredMessage="El n&uacute;mero de rutina es obligatorio"/>
                     </h:panelGrid>

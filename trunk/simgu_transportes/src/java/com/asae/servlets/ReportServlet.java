@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Developer
  */
-@WebServlet("/reports/*")
+@WebServlet("/admin/rutina/reports/*")
 public class ReportServlet extends HttpServlet {
 
     /**

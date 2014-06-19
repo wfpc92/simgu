@@ -47,7 +47,10 @@ public class GrupoCross implements Serializable {
         @JoinColumn(name = "ID_DIA", referencedColumnName = "ID_DIA")})
     @ManyToMany
     private List<Dia> diaList;
-    @ManyToMany(mappedBy = "grupoCrossList", cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
+    @JoinTable(name = "cross_ejercicio_cross", joinColumns = {
+        @JoinColumn(name = "ID_CROSS", referencedColumnName = "ID_CROSS")}, inverseJoinColumns = {
+        @JoinColumn(name = "ID_EJERCICIO_CROSS", referencedColumnName = "idejercicio_cross")})
+    @ManyToMany(cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
     private List<EjercicioCross> ejercicioCrossList;
     @JoinColumn(name = "IDGRUPO_CROSS_GENERAL", referencedColumnName = "IDGRUPO_CROSS_GENERAL")
     @ManyToOne

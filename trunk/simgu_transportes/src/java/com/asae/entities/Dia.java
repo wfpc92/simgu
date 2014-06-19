@@ -51,9 +51,15 @@ public class Dia implements Serializable {
     private String nombre;
     @Column(name = "NUM_DIA")
     private Integer numDia;
-    @ManyToMany(mappedBy = "diaList",cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
+    @JoinTable(name = "dia_cross", joinColumns = {
+        @JoinColumn(name = "ID_DIA", referencedColumnName = "ID_DIA")}, inverseJoinColumns = {
+        @JoinColumn(name = "ID_CROSS", referencedColumnName = "ID_CROSS")})
+    @ManyToMany(cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
     private List<GrupoCross> grupoCrossList;
-    @ManyToMany(mappedBy = "diaList",cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
+    @JoinTable(name = "dia_grupo_muscular", joinColumns = {
+        @JoinColumn(name = "ID_DIA", referencedColumnName = "ID_DIA")}, inverseJoinColumns = {
+        @JoinColumn(name = "ID_GRUPO_MUSCULAR", referencedColumnName = "ID_GRUPO_MUSCULAR")})
+    @ManyToMany(cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
     private List<GrupoMuscular> grupoMuscularList;
     @JoinTable(name = "rutina_dia", joinColumns = {
         @JoinColumn(name = "ID_DIA", referencedColumnName = "ID_DIA")}, inverseJoinColumns = {

@@ -15,6 +15,7 @@ import com.asae.entities.GrupoCrossGeneral;
 import com.asae.entities.GrupoMuscular;
 import com.asae.entities.GrupoMuscularGeneral;
 import com.asae.entities.MedidaEjercicioCross;
+import com.asae.entities.MedidasGenerales;
 import com.asae.entities.Rutina;
 import com.asae.entities.Usuario;
 import com.asae.sessionbeans.DiaFacade;
@@ -89,7 +90,6 @@ public class BeanGestionRutinas {
     private DiaFacade diaFacade;
     @EJB
     private RutinaFacade rutinaFacade;
-
     private List<Rutina> lstRutinasDisponibles;
     private Usuario usuRutinaRegistrar;
     private List<Usuario> lstUsuarioRegistrados;
@@ -193,7 +193,7 @@ public class BeanGestionRutinas {
             PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(file));
             document.open();
             Font bold = new Font(Font.FontFamily.HELVETICA, 12f, Font.BOLD);
-            URL url = FacesContext.getCurrentInstance().getExternalContext().getResource("/img/logo-unicauca-negro.png");
+            URL url = FacesContext.getCurrentInstance().getExternalContext().getResource("/resources/img/logo-unicauca-negro.png");
             Image imgLogoUnicauca = Image.getInstance(url);
             imgLogoUnicauca.scaleAbsolute(118f, 131f);
 
@@ -254,17 +254,28 @@ public class BeanGestionRutinas {
 
             Usuario usuAux = rutinaVisualizar.getIdusuario();
             List<Evaluacion> lstEvalAux = usuAux.getEvaluacionList();
-            Evaluacion evalAux = lstEvalAux.get(lstEvalAux.size() - 1);
+            Evaluacion evalAux;
+            double peso = 0;
+            if (lstEvalAux.size() > 0) {
+                evalAux = lstEvalAux.get(lstEvalAux.size() - 1);
+                peso = evalAux.getPeso().doubleValue();
+            }
 
-            PdfPCell cell11 = new PdfPCell(new Paragraph("Peso: " + evalAux.getPeso()));
+            double estatura = 0;
+            MedidasGenerales medGenAux = usuAux.getMedidasGenerales();
+            if (medGenAux != null) {
+                estatura = medGenAux.getEstatura().doubleValue();
+            }
+
+            PdfPCell cell11 = new PdfPCell(new Paragraph("Peso: " + peso));
             cell11.setBorder(Rectangle.NO_BORDER);
-            PdfPCell cell12 = new PdfPCell(new Paragraph("Talla: " + usuAux.getMedidasGenerales().getEstatura()));
+            PdfPCell cell12 = new PdfPCell(new Paragraph("Talla: " + estatura));
             cell12.setBorder(Rectangle.NO_BORDER);
 
-            double estatura = usuAux.getMedidasGenerales().getEstatura().doubleValue();
-            double peso = evalAux.getPeso().doubleValue();
-
-            double imc = peso / Math.pow(estatura, 2);
+            double imc = 0;
+            if (peso != 0 && estatura != 0) {
+                imc = peso / Math.pow(estatura, 2);
+            }
 
             PdfPCell cell13 = new PdfPCell(new Paragraph("I.M.C: " + imc));
             cell13.setBorder(Rectangle.NO_BORDER);
@@ -1109,23 +1120,37 @@ public class BeanGestionRutinas {
         RequestContext.getCurrentInstance().update("frmVerRutina");
     }
 
-    public double obtenerPeso(List<Evaluacion> lstEvalIn) {
-        if (lstEvalIn != null) {
-            int tamanio = lstEvalIn.size();
+    public double obtenerPeso(Usuario usuIn) {
+        List<Evaluacion> lstEvalIn = usuIn.getEvaluacionList();
+        if (lstEvalIn != null && lstEvalIn.size() > 0) {
+            int tamanio = lstEvalIn.size() - 1;
             return lstEvalIn.get(tamanio).getPeso().doubleValue();
         } else {
-            return -1;
+            return 0;
         }
     }
 
+    public double obtenerEstatura(Usuario usuIn) {
+        MedidasGenerales medGenIn = usuIn.getMedidasGenerales();
+        double estatura = 0;
+        if (medGenIn != null) {
+            estatura = medGenIn.getEstatura().doubleValue();
+        }
+        return estatura;
+    }
+
     public double obtenerImc(Usuario usuIn) {
-        double estatura = -1;
-        double peso = -1;
-        if(usuIn != null && usuIn.getMedidasGenerales() != null){
-            estatura = usuIn.getMedidasGenerales().getEstatura().doubleValue();
-            peso = obtenerPeso(usuIn.getEvaluacionList());
-        }                
-        return peso / Math.pow(estatura, 2);
+        double estatura = 0;
+        double peso = 0;
+        if (usuIn != null) {
+            estatura = obtenerEstatura(usuIn);
+            peso = obtenerPeso(usuIn);
+        }
+        if (estatura != 0 && peso != 0) {
+            return peso / Math.pow(estatura, 2);
+        } else {
+            return 0;
+        }
     }
 
     public void imprimirRutina() {

@@ -43,7 +43,10 @@ public class GrupoMuscular implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID_GRUPO_MUSCULAR")
     private Integer idGrupoMuscular;
-    @ManyToMany(mappedBy = "grupoMuscularList", cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
+    @JoinTable(name = "grupo_muscular_ejercicio_gm", joinColumns = {
+        @JoinColumn(name = "ID_GRUPO_MUSCULAR", referencedColumnName = "ID_GRUPO_MUSCULAR")}, inverseJoinColumns = {
+        @JoinColumn(name = "ID_EJERCICIO", referencedColumnName = "idejerciciogm")})
+    @ManyToMany(cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
     private List<EjercicioGm> ejercicioGmList;
     @JoinTable(name = "dia_grupo_muscular", joinColumns = {
         @JoinColumn(name = "ID_GRUPO_MUSCULAR", referencedColumnName = "ID_GRUPO_MUSCULAR")}, inverseJoinColumns = {
